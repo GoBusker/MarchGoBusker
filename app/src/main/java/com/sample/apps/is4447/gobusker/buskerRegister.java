@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class buskerRegister extends AppCompatActivity {
+    //declaring variables
+    //connection to firebase
     private FirebaseAuth mAuth;
 
     Button register;
@@ -27,8 +29,10 @@ public class buskerRegister extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busker_register);
+        //connection to firebase
         mAuth = FirebaseAuth.getInstance();
 
+        //link variables with items from layour file
         email = (EditText) findViewById(R.id.etbuskerEmailRegister);
         firstname = (EditText) findViewById(R.id.etBuskerFirtsName);
         secondname = (EditText) findViewById(R.id.etbuskerSecondName);
@@ -39,13 +43,16 @@ public class buskerRegister extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Code acquired and modified from this youtube video for firebase register functionality
+                //"https://www.youtube.com/results?search_query=%231+login+and+registration+android+app+tutorial+using+firebase+authentication+-+create+user"
 
                 String emailreg = email.getText().toString();
                 String firstnamereg = firstname.getText().toString();
                 String secondnamereg = secondname.getText().toString();
                 String passwordreg = password.getText().toString();
 
+
+                //validates user input
                 if (firstnamereg.isEmpty()) {
                     firstname.setError("Please enter first name");
                     firstname.requestFocus();
@@ -71,6 +78,8 @@ public class buskerRegister extends AppCompatActivity {
                     password.requestFocus();
                 }
 
+                //connects to firebase
+                //links busker class with new email+password in firebase
                 mAuth.createUserWithEmailAndPassword(emailreg, passwordreg)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -81,6 +90,7 @@ public class buskerRegister extends AppCompatActivity {
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(busker).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
+                                        //if success or failure, inform user
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(buskerRegister.this, "Busker has been registered successfully", Toast.LENGTH_LONG).show();

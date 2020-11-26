@@ -18,9 +18,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class fanLogin extends AppCompatActivity {
+    //declaring variables
     Button register, login;
     EditText email, password;
 
+    //connection to firebase
     private FirebaseAuth mAuth;
 
     @Override
@@ -28,8 +30,10 @@ public class fanLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fan_login);
 
+        //connection to firebase
         mAuth = FirebaseAuth.getInstance();
 
+        //link variables with items from layour file
         register = (Button) findViewById(R.id.btnfanRegisterFromLogin);
         login = (Button) findViewById(R.id.btnfanLogin);
         email = (EditText) findViewById(R.id.etfanEmail);
@@ -40,6 +44,7 @@ public class fanLogin extends AppCompatActivity {
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
+            //intent to register, if you havent already
             public void onClick(View v) {
                 Intent i = new Intent(fanLogin.this,fanRegister.class);
                 startActivity(i);
@@ -51,7 +56,7 @@ public class fanLogin extends AppCompatActivity {
             public void onClick(View v) {
                 String emaillog = email.getText().toString();
                 String passwordlog = password.getText().toString();
-
+                //user validation
                 if (emaillog.isEmpty()) {
                     email.setError("Please enter email");
                     email.requestFocus();
@@ -70,6 +75,8 @@ public class fanLogin extends AppCompatActivity {
                 }
                 mAuth.signInWithEmailAndPassword(emaillog, passwordlog).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
+                    //Code acquired and modified from this youtube video for firebase login functionality
+                    //"https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             FirebaseUser busker = FirebaseAuth.getInstance().getCurrentUser();
@@ -78,6 +85,8 @@ public class fanLogin extends AppCompatActivity {
                                 Intent i = new Intent(fanLogin.this, buskerHomePage.class);
                                 startActivity(i);
                             }else{
+                                //Code acquired and modified from this youtube video for firebase email verification functionality
+                                //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
                                 busker.sendEmailVerification();
                                 Toast.makeText(fanLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
                             }

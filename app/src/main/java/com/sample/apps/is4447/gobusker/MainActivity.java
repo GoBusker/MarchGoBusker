@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         fan = (Button) findViewById(R.id.btnFan);
         busker = (Button) findViewById(R.id.btnBusker);
-
+        //intents to send user to busker or fan page
         busker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

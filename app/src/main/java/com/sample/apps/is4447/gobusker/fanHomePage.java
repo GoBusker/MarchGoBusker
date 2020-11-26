@@ -20,6 +20,8 @@ public class fanHomePage extends AppCompatActivity {
         logout = (Button) findViewById(R.id.btnfanLogout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
+            //Code acquired and modified from this youtube video for firebase logout functionality
+            //https://www.youtube.com/watch?v=DRBLazxi6Eg&ab_channel=CodeWithMazn
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Intent i = new Intent(fanHomePage.this,MainActivity.class);

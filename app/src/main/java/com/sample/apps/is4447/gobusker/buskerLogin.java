@@ -19,22 +19,27 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class buskerLogin extends AppCompatActivity {
+    //declaring variables
     Button register, login;
     EditText email, password;
 
+    //connection to firebase
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busker_login);
+        //connection to firebase
         mAuth = FirebaseAuth.getInstance();
 
+        //link variables with items from layour file
         register = (Button) findViewById(R.id.btnBuskerRegisterFromLogin);
         login = (Button) findViewById(R.id.btnbuskerLogin);
         email = (EditText) findViewById(R.id.etbuskerEmail);
         password = (EditText) findViewById(R.id.etbuskerPassword);
 
+        //intent to register, if you havent already
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +54,7 @@ public class buskerLogin extends AppCompatActivity {
                 String emaillog = email.getText().toString();
                 String passwordlog = password.getText().toString();
 
+                //user validation
                 if (emaillog.isEmpty()) {
                     email.setError("Please enter email");
                     email.requestFocus();
@@ -68,10 +74,13 @@ public class buskerLogin extends AppCompatActivity {
 
                 mAuth.signInWithEmailAndPassword(emaillog, passwordlog).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
+                    //Code acquired and modified from this youtube video for firebase login functionality
+                    //"https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             FirebaseUser busker = FirebaseAuth.getInstance().getCurrentUser();
-
+                            //Code acquired and modified from this youtube video for firebase email verification functionality
+                            //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
                             if(busker.isEmailVerified()) {
                                 Intent i = new Intent(buskerLogin.this, buskerHomePage.class);
                                 startActivity(i);
