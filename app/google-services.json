@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "234143946788",
+    "firebase_url": "https://gobusker-e1749.firebaseio.com",
+    "project_id": "gobusker-e1749",
+    "storage_bucket": "gobusker-e1749.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234143946788:android:c59b6bd843233ebe2060b1",
+        "android_client_info": {
+          "package_name": "com.sample.apps.is4447.gobusker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234143946788-usdutnevg14t71m1umg37fnvari8eo2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI2c-kGemJa7BojQCOnAH7yEgFDm9Nqt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234143946788-usdutnevg14t71m1umg37fnvari8eo2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

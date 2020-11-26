@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GoBusker!</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="textview">TextView</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="logout">Logout</string>
+    <string name="first_name">First Name</string>
+    <string name="surname">Surname</string>
+    <string name="busker">Busker</string>
+    <string name="fan">Fan</string>
+    <string name="forgot">forgot</string>
+</resources>
