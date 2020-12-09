@@ -11,17 +11,17 @@
         android:layout_width="149dp"
         android:layout_height="135dp"
         android:layout_marginTop="28dp"
-        android:contentDescription="ImageHeader"
+        android:contentDescription="@string/imageheader"
         android:src="@drawable/gobuskerimage"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-5dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvHeading3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="GoBusker"
+        android:text="@string/gobusker"
         android:textSize="55sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@+id/ivCrotchet3"
@@ -42,26 +42,6 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/forgot"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnbuskerLogin" />
-
-    <Button
-        android:id="@+id/btnBuskerRegisterFromLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="84dp"
-        android:text="@string/register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnbuskerLogin" />
 
     <Button
         android:id="@+id/btnbuskerLogin"
@@ -101,5 +81,29 @@
         android:text="@string/busker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeading3" />
+
+    <TextView
+        android:id="@+id/tvBuskerForgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/forgot_password"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnbuskerLogin" />
+
+    <TextView
+        android:id="@+id/tvBuskerRegisterFromLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/register"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvBuskerForgot"
+        app:layout_constraintTop_toBottomOf="@+id/btnbuskerLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

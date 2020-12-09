@@ -22,7 +22,7 @@ public class buskerRegister extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     Button register;
-    EditText email, password, firstname, secondname;
+    EditText email, password, firstname, secondname, verifypassword;
 
 
     @Override
@@ -37,6 +37,7 @@ public class buskerRegister extends AppCompatActivity {
         firstname = (EditText) findViewById(R.id.etBuskerFirtsName);
         secondname = (EditText) findViewById(R.id.etbuskerSecondName);
         password = (EditText) findViewById(R.id.etbuskerPasswordRegister);
+        verifypassword = (EditText) findViewById(R.id.etbuskerPasswordRegister2);
 
         register = (Button) findViewById(R.id.btnbuskerRegister);
 
@@ -50,34 +51,32 @@ public class buskerRegister extends AppCompatActivity {
                 String firstnamereg = firstname.getText().toString();
                 String secondnamereg = secondname.getText().toString();
                 String passwordreg = password.getText().toString();
+                String verpassword = verifypassword.getText().toString();
 
 
                 //validates user input
                 if (firstnamereg.isEmpty()) {
                     firstname.setError("Please enter first name");
                     firstname.requestFocus();
-                }
-                if (secondnamereg.isEmpty()) {
+                } else if (secondnamereg.isEmpty()) {
                     secondname.setError("Please enter second name");
                     secondname.requestFocus();
-                }
-                if (emailreg.isEmpty()) {
+                } else if (emailreg.isEmpty()) {
                     email.setError("Please enter email");
                     email.requestFocus();
-                }
-                if (!Patterns.EMAIL_ADDRESS.matcher(emailreg).matches()) {
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailreg).matches()) {
                     email.setError("Please enter valid email");
                     email.requestFocus();
-                }
-                if (passwordreg.isEmpty()) {
+                } else if (passwordreg.isEmpty()) {
                     password.setError("Please enter password");
                     password.requestFocus();
-                }
-                if (passwordreg.length() < 6) {
+                } else if (passwordreg.length() < 6) {
                     password.setError("Password must be longer than 6 characters");
                     password.requestFocus();
-                }
-
+                } else if (passwordreg != verpassword){
+                    verifypassword.setError("Both passwords must match");
+                    verifypassword.requestFocus();
+                } else try{
                 //connects to firebase
                 //links busker class with new email+password in firebase
                 mAuth.createUserWithEmailAndPassword(emailreg, passwordreg)
@@ -102,7 +101,9 @@ public class buskerRegister extends AppCompatActivity {
                                 }
                             }
                         });
-
+            }catch(Exception e){
+                    Toast.makeText(buskerRegister.this, "Registration has failed", Toast.LENGTH_SHORT).show();
+            }
 
             }
 

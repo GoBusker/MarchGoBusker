@@ -12,4 +12,11 @@
     <string name="busker">Busker</string>
     <string name="fan">Fan</string>
     <string name="forgot">forgot</string>
+    <string name="gobusker">GoBusker</string>
+    <string name="imageheader">ImageHeader</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="forgot_password">Forgot Password</string>
+
+
+
 </resources>

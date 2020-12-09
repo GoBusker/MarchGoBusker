@@ -20,8 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class buskerLogin extends AppCompatActivity {
     //declaring variables
-    Button register, login;
+    Button login;
     EditText email, password;
+    TextView forgotPassword, register;
 
     //connection to firebase
     private FirebaseAuth mAuth;
@@ -34,10 +35,12 @@ public class buskerLogin extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //link variables with items from layour file
-        register = (Button) findViewById(R.id.btnBuskerRegisterFromLogin);
+        register = (TextView) findViewById(R.id.tvBuskerRegisterFromLogin);
         login = (Button) findViewById(R.id.btnbuskerLogin);
         email = (EditText) findViewById(R.id.etbuskerEmail);
         password = (EditText) findViewById(R.id.etbuskerPassword);
+
+        forgotPassword = (TextView) findViewById(R.id.tvBuskerForgot);
 
         //intent to register, if you havent already
         register.setOnClickListener(new View.OnClickListener() {
@@ -58,42 +61,52 @@ public class buskerLogin extends AppCompatActivity {
                 if (emaillog.isEmpty()) {
                     email.setError("Please enter email");
                     email.requestFocus();
-                }
-                if (!Patterns.EMAIL_ADDRESS.matcher(emaillog).matches()) {
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emaillog).matches()) {
                     email.setError("Please enter valid email");
                     email.requestFocus();
-                }
-                if (passwordlog.isEmpty()) {
+                } else if (passwordlog.isEmpty()) {
                     password.setError("Please enter password");
                     password.requestFocus();
-                }
-                if (passwordlog.length() < 6) {
+                } else if (passwordlog.length() < 6) {
                     password.setError("Password must be longer than 6 characters");
                     password.requestFocus();
-                }
-
+                } else try{
                 mAuth.signInWithEmailAndPassword(emaillog, passwordlog).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     //Code acquired and modified from this youtube video for firebase login functionality
                     //"https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             FirebaseUser busker = FirebaseAuth.getInstance().getCurrentUser();
                             //Code acquired and modified from this youtube video for firebase email verification functionality
                             //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
-                            if(busker.isEmailVerified()) {
+                            if (busker.isEmailVerified()) {
                                 Intent i = new Intent(buskerLogin.this, buskerHomePage.class);
                                 startActivity(i);
-                            }else{
+                            } else {
                                 busker.sendEmailVerification();
                                 Toast.makeText(buskerLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
+                        } else {
                             Toast.makeText(buskerLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+            }catch(Exception e){
+                Toast.makeText(buskerLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
+            }
+
             }
         });
+
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(buskerLogin.this, buskerForgot.class);
+                startActivity(i);
+            }
+        });
+
     }
 }

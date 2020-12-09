@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,8 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class fanLogin extends AppCompatActivity {
     //declaring variables
-    Button register, login;
+    Button  login;
     EditText email, password;
+    TextView forgotPassword, register;
 
     //connection to firebase
     private FirebaseAuth mAuth;
@@ -34,13 +36,14 @@ public class fanLogin extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //link variables with items from layour file
-        register = (Button) findViewById(R.id.btnfanRegisterFromLogin);
+        register = (TextView) findViewById(R.id.tvFanRegisterFromLogin);
         login = (Button) findViewById(R.id.btnfanLogin);
         email = (EditText) findViewById(R.id.etfanEmail);
         password = (EditText) findViewById(R.id.etfanPassword);
 
+        forgotPassword = (TextView) findViewById(R.id.tvFanForgot);
 
-        register = (Button) findViewById(R.id.btnfanRegisterFromLogin);
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,34 +63,31 @@ public class fanLogin extends AppCompatActivity {
                 if (emaillog.isEmpty()) {
                     email.setError("Please enter email");
                     email.requestFocus();
-                }
-                if (!Patterns.EMAIL_ADDRESS.matcher(emaillog).matches()) {
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emaillog).matches()) {
                     email.setError("Please enter valid email");
                     email.requestFocus();
-                }
-                if (passwordlog.isEmpty()) {
+                } else if (passwordlog.isEmpty()) {
                     password.setError("Please enter password");
                     password.requestFocus();
-                }
-                if (passwordlog.length() < 6) {
+                } else if (passwordlog.length() < 6) {
                     password.setError("Password must be longer than 6 characters");
                     password.requestFocus();
-                }
+                } else try{
                 mAuth.signInWithEmailAndPassword(emaillog, passwordlog).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     //Code acquired and modified from this youtube video for firebase login functionality
                     //"https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            FirebaseUser busker = FirebaseAuth.getInstance().getCurrentUser();
+                            FirebaseUser fan = FirebaseAuth.getInstance().getCurrentUser();
 
-                            if(busker.isEmailVerified()) {
-                                Intent i = new Intent(fanLogin.this, buskerHomePage.class);
+                            if(fan.isEmailVerified()) {
+                                Intent i = new Intent(fanLogin.this, fanHomePage.class);
                                 startActivity(i);
                             }else{
                                 //Code acquired and modified from this youtube video for firebase email verification functionality
                                 //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
-                                busker.sendEmailVerification();
+                                fan.sendEmailVerification();
                                 Toast.makeText(fanLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
                             }
                         }else{
@@ -95,6 +95,17 @@ public class fanLogin extends AppCompatActivity {
                         }
                     }
                 });
+            }catch(Exception e){
+                Toast.makeText(fanLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
+            }
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(fanLogin.this, fanForgot.class);
+                startActivity(i);
             }
         });
     }

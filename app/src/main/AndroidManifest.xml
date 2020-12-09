@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoBusker">
-        <activity android:name=".fanHomePage"></activity>
+        <activity android:name=".fanForgot"></activity>
+        <activity android:name=".buskerForgot" />
+        <activity android:name=".fanHomePage" />
         <activity android:name=".buskerHomePage" />
         <activity android:name=".fanLogin" />
         <activity android:name=".fanRegister" />

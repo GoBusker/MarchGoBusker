@@ -6,22 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".buskerHomePage">
 
-    <ImageView
-        android:id="@+id/ivCrotchet7"
-        android:layout_width="149dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="28dp"
-        android:contentDescription="ImageHeader"
-        android:src="@drawable/gobuskerimage"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-5dp" />
-
     <TextView
         android:id="@+id/tvHeading7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="GoBusker"
+        android:text="@string/gobusker"
         android:textSize="55sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@+id/ivCrotchet7"
@@ -31,10 +21,104 @@
         android:id="@+id/btnbuskerLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="556dp"
         android:text="@string/logout"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBuskerDisplayFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="36dp"
+        android:text="First Name:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCrotchet7" />
+
+    <TextView
+        android:id="@+id/tvBuskerShowSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/textview"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBuskerDisplaySurname" />
+
+    <TextView
+        android:id="@+id/tvBuskerShowFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/textview"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBuskerDisplayFirst" />
+
+    <TextView
+        android:id="@+id/tvBuskerShowEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/textview"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBuskerDisplayEmail" />
+
+    <TextView
+        android:id="@+id/tvBuskerDisplayEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="36dp"
+        android:text="Email:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBuskerShowSurname" />
+
+    <ImageView
+        android:id="@+id/ivCrotchet7"
+        android:layout_width="149dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/imageheader"
+        android:src="@drawable/gobuskerimage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBuskerDisplaySurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="36dp"
+        android:text="Surname:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBuskerShowFirst" />
+
+    <Button
+        android:id="@+id/btnBuskerAddPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Payment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnbuskerLogout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
