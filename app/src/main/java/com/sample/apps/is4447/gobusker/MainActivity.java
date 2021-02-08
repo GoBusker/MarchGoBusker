@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.sample.apps.is4447.gobusker.Busker.buskerLogin;
+import com.sample.apps.is4447.gobusker.Fan.fanLogin;
+
 public class MainActivity extends AppCompatActivity {
     Button fan, busker;
 
@@ -21,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
         busker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,buskerLogin.class);
+                Intent i = new Intent(MainActivity.this, buskerLogin.class);
                 startActivity(i);
             }
         });
         fan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,fanLogin.class);
+                Intent i = new Intent(MainActivity.this, fanLogin.class);
                 startActivity(i);
             }
         });

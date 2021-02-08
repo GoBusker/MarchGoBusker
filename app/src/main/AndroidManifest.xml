@@ -9,14 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoBusker">
-        <activity android:name=".fanForgot"></activity>
-        <activity android:name=".buskerForgot" />
-        <activity android:name=".fanHomePage" />
-        <activity android:name=".buskerHomePage" />
-        <activity android:name=".fanLogin" />
-        <activity android:name=".fanRegister" />
-        <activity android:name=".buskerRegister" />
-        <activity android:name=".buskerLogin" />
+        <activity android:name=".Busker.BuskerComments"/>
+        <activity android:name=".Busker.BuskerFeed" />
+        <activity android:name=".Fan.fanForgot" />
+        <activity android:name=".Busker.buskerForgot" />
+        <activity android:name=".Fan.fanHomePage" />
+        <activity android:name=".Busker.buskerHomePage" />
+        <activity android:name=".Fan.fanLogin" />
+        <activity android:name=".Fan.fanRegister" />
+        <activity android:name=".Busker.BuskerPost" />
+        <activity android:name=".Busker.buskerRegister" />
+        <activity android:name=".Busker.buskerLogin" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,5 +31,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
