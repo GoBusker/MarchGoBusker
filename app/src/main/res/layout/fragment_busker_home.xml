@@ -22,6 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+            <!-- I used this Youtube video as a refrence for creating the home screen
+            https://www.youtube.com/watch?v=tpRoOyfRxbA&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=6&ab_channel=KODDev -->
 
             <ImageView
                 android:layout_width="180dp"

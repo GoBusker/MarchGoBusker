@@ -27,14 +27,16 @@ import com.sample.apps.is4447.gobusker.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// I referenced this Youtube video for busker search and follow
+//https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev
 public class BuskerSearchFragment extends Fragment {
 private RecyclerView recyclerView;
 private BuskerAdapter buskerAdapter;
 private List<Busker> mBuskers;
 
 EditText search_bar;
-
+// <!-- I referenced this Youtube video for busker search and follow
+//    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

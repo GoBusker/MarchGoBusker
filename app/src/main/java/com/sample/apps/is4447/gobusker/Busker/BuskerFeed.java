@@ -18,6 +18,8 @@ import com.sample.apps.is4447.gobusker.Fragment.BuskerSearchFragment;
 import com.sample.apps.is4447.gobusker.R;
 
 public class BuskerFeed extends AppCompatActivity {
+  //  I referenced this Youtube video for the bottom navigation
+ //   https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev
 
     BottomNavigationView bottomNavigationView;
     Fragment selectedFragment = null;
@@ -31,11 +33,28 @@ public class BuskerFeed extends AppCompatActivity {
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new BuskerHomeFragment()).commit();
+        // I used this Youtube video as a reference for displaying comments under posts
+        //    https://www.youtube.com/watch?v=V2lai8cJIkk&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=10&ab_channel=KODDev
+        Bundle intent = getIntent().getExtras();
+        if (intent != null){
+            String publisher = intent.getString("publisherid");
 
-    }
+            SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+            editor.putString("profileid", publisher);
+            editor.apply();
 
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new BuskerProfileFragment()).commit();
+        } else {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new BuskerHomeFragment()).commit();
+
+        }
+        }
+
+// I referenced this Youtube video for the bottom navigation
+//https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override

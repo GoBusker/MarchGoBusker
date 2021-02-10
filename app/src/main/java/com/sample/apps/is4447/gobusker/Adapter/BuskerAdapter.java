@@ -38,7 +38,8 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
         this.nContext = nContext;
         this.mBuskers = mBuskers;
     }
-
+ // I referenced this Youtube video for busker search and follow
+   // https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -76,6 +77,8 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
                         new BuskerProfileFragment()).commit();
             }
         });
+        // <!-- I referenced this Youtube video for busker search and follow
+        //    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
 viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -93,7 +96,8 @@ viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
     }
 });
     }
-
+    // <!-- I referenced this Youtube video for busker search and follow
+    //    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
     @Override
     public int getItemCount() {
         return mBuskers.size();
@@ -116,7 +120,8 @@ viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
             btn_follow = itemView.findViewById(R.id.btn_follow);
         }
     }
-
+    // <!-- I referenced this Youtube video for busker search and follow
+    //    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
     private void isFollowing(String userId, Button button){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("Follow").child(firebaseBusker.getUid()).child("following");

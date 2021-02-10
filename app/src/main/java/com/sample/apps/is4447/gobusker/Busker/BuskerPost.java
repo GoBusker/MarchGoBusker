@@ -33,6 +33,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BuskerPost extends AppCompatActivity {
 
+    //I used this Youtube video as a reference for creating posts with Images
+// https://www.youtube.com/watch?v=GV1qbi59rgc&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=5&ab_channel=KODDev
+
     Uri imageUri;
     String myUri = "";
     StorageTask uploadTask;

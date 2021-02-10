@@ -28,7 +28,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+//I used this video for reference for sending comments onto posts
+//    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev
 
+
+//https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
+//I used this Youtube video for reference for displaying posts
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     public Context mContext;
@@ -48,6 +53,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return new PostAdapter.ViewHolder(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
@@ -66,6 +73,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
        nrLikes(viewHolder.likes, post.getPostid());
        getComments(post.getPostid(), viewHolder.comments);
 
+        //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
+        //I used this video for reference to adding likes to posts
         viewHolder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +87,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 }
             }
         });
-
+//I used this video for reference for sending comments onto posts
+//    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev
         viewHolder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +109,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
     }
 
+    //https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
+//I used this Youtube video for reference for displaying posts
     @Override
     public int getItemCount() {
         return mPost.size();
@@ -125,7 +137,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
 
     }
-
+//I used this video for reference for sending comments onto posts
+//    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev
     private void getComments(String postid, TextView comments){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
 
@@ -141,7 +154,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
     }
-
+  //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
+    //I used this video for reference to adding likes to posts
     private void isLikes(String postid, ImageView imageView){
 
        final FirebaseUser firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
@@ -167,7 +181,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
     }
-
+    //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
+    //I used this video for reference to adding likes to posts
     private void nrLikes(final TextView likes, String postid){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Likes")
                 .child(postid);
@@ -183,7 +198,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
     }
-
+    //https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
+//I used this Youtube video for reference for displaying posts
     private void publisherInfo(final ImageView image_profile,final TextView username, final TextView publisher, String userId) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(userId);
 

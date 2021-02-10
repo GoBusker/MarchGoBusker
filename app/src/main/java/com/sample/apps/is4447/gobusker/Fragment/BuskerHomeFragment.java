@@ -33,7 +33,12 @@ public class BuskerHomeFragment extends Fragment {
 
     private List<String> followingList;
 
+    //I used this Youtube video for reference for creating the home/feed layout
+    //https://www.youtube.com/watch?v=tpRoOyfRxbA&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=6&ab_channel=KODDev
+
     @Override
+    //https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
+//I used this Youtube video for reference for displaying posts
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_busker_home,container, false);
@@ -52,7 +57,8 @@ public class BuskerHomeFragment extends Fragment {
 
         return view;
     }
-
+    //https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
+//I used this Youtube video for reference for displaying  posts
     private void checkFollowing(){
         followingList = new ArrayList<>();
 
@@ -77,7 +83,8 @@ public class BuskerHomeFragment extends Fragment {
             }
         });
     }
-
+    //https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
+//I used this Youtube video for reference for displaying  posts
     private void readPosts(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
 

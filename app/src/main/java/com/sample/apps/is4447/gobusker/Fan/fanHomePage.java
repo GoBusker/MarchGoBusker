@@ -114,7 +114,7 @@ private int PAYPAL_REQUEST_CODE = 1;
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(PayPalConfig.PAYPAL_CLIENT_ID);
     private void payPalPayment(){
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(testPayment)), "EUR", "Donation",
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(testPayment)), "USD", "Donation",
                 PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(this, PaymentActivity.class);

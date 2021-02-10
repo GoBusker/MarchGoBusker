@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Busker.BuskerComments">
 
+    <!-- I used this video for reference for sending comments onto posts
+    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev -->
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

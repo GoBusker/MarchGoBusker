@@ -11,6 +11,8 @@
         android:id="@+id/image_profile"
         android:src="@mipmap/ic_launcher"
         />
+    <!--I used this Youtube video for reference for creating the home/feed layout
+    //https://www.youtube.com/watch?v=tpRoOyfRxbA&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=6&ab_channel=KODDev -->
 
     <LinearLayout
         android:layout_width="wrap_content"

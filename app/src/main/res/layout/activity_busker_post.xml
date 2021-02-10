@@ -11,8 +11,10 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         android:id="@+id/bar">
-
-
+       <!--
+        I used this Youtube video to reference Post creation
+        https://www.youtube.com/watch?v=GV1qbi59rgc&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=5&ab_channel=KODDev
+-->
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"

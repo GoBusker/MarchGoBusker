@@ -1,7 +1,8 @@
 package com.sample.apps.is4447.gobusker.Model;
 
 public class Post {
-
+//https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
+//I used this Youtube video for reference for displaying posts
 
     public String getPostid() {
         return postid;

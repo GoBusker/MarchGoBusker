@@ -5,6 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.BuskerSearchFragment">
 
+    <!-- I referenced this Youtube video for busker search and follow
+    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
+
 <com.google.android.material.appbar.AppBarLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

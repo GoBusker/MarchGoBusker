@@ -18,6 +18,9 @@
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
 
+      <!--  I referenced this Youtube video for the bottom navigation
+        https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev -->
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
