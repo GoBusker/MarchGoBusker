@@ -1,11 +1,15 @@
 package com.sample.apps.is4447.gobusker.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +27,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sample.apps.is4447.gobusker.Adapter.MyPhotoAdapter;
+import com.sample.apps.is4447.gobusker.Busker.BuskerEditProfile;
+import com.sample.apps.is4447.gobusker.Busker.BuskerFeed;
+import com.sample.apps.is4447.gobusker.Busker.buskerLogin;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.Model.Post;
 import com.sample.apps.is4447.gobusker.R;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 
 public class BuskerProfileFragment extends Fragment {
@@ -33,6 +46,16 @@ public class BuskerProfileFragment extends Fragment {
     ImageView image_profile,options;
     TextView posts, followers, following, fullname, bio, username;
     Button edit_profile;
+
+    private List<String> mySaves;
+
+    RecyclerView recyclerView_saves;
+    MyPhotoAdapter myPhotoAdapter_saves;
+    List<Post> postList_saves;
+
+    RecyclerView recyclerView;
+    MyPhotoAdapter myPhotoAdapter;
+    List<Post> postList;
 
     FirebaseUser firebaseBusker;
     String profileid;
@@ -62,9 +85,34 @@ public class BuskerProfileFragment extends Fragment {
         my_photos = view.findViewById(R.id.my_photos);
         saved_photos = view.findViewById(R.id.saved_photos);
 
+        //I adapted this Youtube video to have all busker posts visible on their profile
+        // https://www.youtube.com/watch?v=4HKEApz-XOM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=14&ab_channel=KODDev
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        postList = new ArrayList<>();
+        myPhotoAdapter = new MyPhotoAdapter(getContext(), postList);
+        recyclerView.setAdapter(myPhotoAdapter);
+
+        //I adapted this Youtube video to add saving post functionality
+        //https://www.youtube.com/watch?v=uloDNWsM__g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=15&ab_channel=KODDev
+        recyclerView_saves = view.findViewById(R.id.recycler_view_save);
+        recyclerView_saves.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager_saves = new GridLayoutManager(getContext(), 3);
+        recyclerView_saves.setLayoutManager(linearLayoutManager_saves);
+        postList_saves = new ArrayList<>();
+        myPhotoAdapter_saves = new MyPhotoAdapter(getContext(), postList_saves);
+        recyclerView_saves.setAdapter(myPhotoAdapter_saves);
+
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView_saves.setVisibility(View.GONE);
+
         buskerInfo();
         getFollowers();
         getNrPosts();
+        myPhotos();
+        mysaves();
 
         if(profileid.equals(firebaseBusker.getUid())){
             edit_profile.setText("Edit Profile");
@@ -82,7 +130,7 @@ public class BuskerProfileFragment extends Fragment {
                 String btn = edit_profile.getText().toString();
 
                 if(btn.equals("Edit Profile")){
-                    // go to editprofile
+                   startActivity(new Intent(getContext(), BuskerEditProfile.class));
                 } else if (btn.equals("follow")){
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
                             .child("following").child(profileid).setValue(true);
@@ -96,6 +144,20 @@ public class BuskerProfileFragment extends Fragment {
                             .child("followers").child(firebaseBusker.getUid()).removeValue();
                 }
 
+            }
+        });
+        my_photos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView_saves.setVisibility(View.GONE);
+            }
+        });
+        saved_photos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setVisibility(View.GONE);
+                recyclerView_saves.setVisibility(View.VISIBLE);
             }
         });
 
@@ -196,4 +258,76 @@ public class BuskerProfileFragment extends Fragment {
             }
         });
     }
-}
+    //I adapted this Youtube video to have all busker posts visible on their profile
+    // https://www.youtube.com/watch?v=4HKEApz-XOM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=14&ab_channel=KODDev
+    private void myPhotos(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+                    if (post.getPublisher().equals(profileid)){
+                        postList.add(post);
+                    }
+                }
+                Collections.reverse(postList);
+                myPhotoAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+    //I adapted this Youtube video to add saving post functionality
+    //https://www.youtube.com/watch?v=uloDNWsM__g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=15&ab_channel=KODDev
+    private void mysaves(){
+        mySaves = new ArrayList<>();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Saves")
+                    .child(firebaseBusker.getUid());
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        mySaves.add(snapshot.getKey());
+                    }
+
+                    readSaves();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+        private void readSaves(){
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    postList_saves.clear();
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        Post post = snapshot.getValue(Post.class);
+
+                        for (String id : mySaves){
+                            if (post.getPostid().equals(id)){
+                                postList_saves.add(post);
+                            }
+                        }
+                    }
+                    myPhotoAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }

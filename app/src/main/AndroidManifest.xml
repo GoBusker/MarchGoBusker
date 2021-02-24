@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoBusker">
-        <activity android:name=".Busker.BuskerComments"/>
+        <activity android:name=".Busker.BuskerEditProfile"></activity>
+        <activity android:name=".Busker.BuskerComments" />
         <activity android:name=".Busker.BuskerFeed" />
         <activity android:name=".Fan.fanForgot" />
         <activity android:name=".Busker.buskerForgot" />
@@ -20,6 +21,10 @@
         <activity android:name=".Busker.BuskerPost" />
         <activity android:name=".Busker.buskerRegister" />
         <activity android:name=".Busker.buskerLogin" />
+        <!--
+https://www.youtube.com/watch?v=GV1qbi59rgc&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=5&ab_channel=KODDev
+        Referenced this video for for posting images
+        -->
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

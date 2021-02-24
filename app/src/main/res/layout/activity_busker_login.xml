@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Busker.buskerLogin">
 
+
+<!-- "https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
+ Design Code was based off of this Login Youtube Tutorial -->
+
     <ImageView
         android:id="@+id/ivCrotchet3"
         android:layout_width="149dp"

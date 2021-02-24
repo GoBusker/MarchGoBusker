@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Busker.buskerRegister">
 
+    <!--      "https://www.youtube.com/results?search_query=%231+login+and+registration+android+app+tutorial+using+firebase+authentication+-+create+user"
+      Code acquired for register design page -->
     <TextView
         android:id="@+id/tvBusker2"
         android:layout_width="wrap_content"

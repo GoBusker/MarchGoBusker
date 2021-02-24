@@ -99,13 +99,16 @@ private void register(String username, String firstname, String email, String pa
                         FirebaseUser firebaseUser = mAuth.getCurrentUser();
                         String userId = firebaseUser.getUid();
 
+                        //https://www.youtube.com/watch?v=WOmBT_N1mKY&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=2&ab_channel=KODDev
+                        //I went back and added hashmap functionality using this video
+
                         reference = FirebaseDatabase.getInstance().getReference().child("Buskers").child(userId);
                         HashMap<String, Object>hashMap = new HashMap<>();
                         hashMap.put("id", userId);
                         hashMap.put("username", username.toLowerCase());
                         hashMap.put("firstname", firstname);
                         hashMap.put("bio", "");
-                        hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/gobusker-e1749.appspot.com/o/IMG_20180107_173528_102.jpg?alt=media&token=7b6f5d36-e67b-41f4-8878-f9f6708be83b");
+                        hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/gobusker-e1749.appspot.com/o/IMG_20180107_173528_102.jpg?alt=media&token=ecdcfb13-4fc1-412a-b7f6-a773f242fa05");
                      /*   Busker busker = new Busker(firstnamereg, bioreg, emailreg, userId);
                         FirebaseDatabase.getInstance().getReference("Buskers")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -118,6 +121,7 @@ private void register(String username, String firstname, String email, String pa
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(buskerRegister.this, "Busker has been registered successfully", Toast.LENGTH_LONG).show();
+
                                 }
                             }
                         });
