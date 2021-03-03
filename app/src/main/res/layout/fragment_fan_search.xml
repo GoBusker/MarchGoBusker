@@ -3,12 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuskerFragments.BuskerPostDetailsFragment">
-
-    <!--
-    I adapted this youtube video to add post details
-     https://www.youtube.com/watch?v=CGIgC3l4Bz0&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=16&ab_channel=KODDev
-    -->
+    tools:context=".FanFragments.FanSearchFragment">
+    <!-- I referenced this Youtube video for busker search and follow
+      https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,33 +17,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
-            android:background="?android:attr/windowBackground">
+            android:background="?android:attr/windowBackground"
+            >
 
-            <RelativeLayout
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_light"
+                />
+
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:text="Photo"
-                    android:textColor="@color/design_default_color_primary_dark"/>
-
-            </RelativeLayout>
-
+                android:layout_height="wrap_content"
+                android:id="@+id/search_bar"
+                android:hint="Search.."
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                />
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bar"
-        android:id="@+id/recycler_view">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/recycler_view"
+        />
 
 </RelativeLayout>

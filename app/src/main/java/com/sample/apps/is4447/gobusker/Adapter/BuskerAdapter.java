@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.sample.apps.is4447.gobusker.Fragment.BuskerProfileFragment;
+import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerProfileFragment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
 

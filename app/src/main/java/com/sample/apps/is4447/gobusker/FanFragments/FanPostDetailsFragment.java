@@ -1,4 +1,4 @@
-package com.sample.apps.is4447.gobusker.Fragment;
+package com.sample.apps.is4447.gobusker.FanFragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -18,29 +18,31 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sample.apps.is4447.gobusker.Adapter.FanPostAdapter;
 import com.sample.apps.is4447.gobusker.Adapter.PostAdapter;
 import com.sample.apps.is4447.gobusker.Model.Post;
 import com.sample.apps.is4447.gobusker.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class BuskerPostDetailsFragment extends Fragment {
-
+public class FanPostDetailsFragment extends Fragment {
     //    I adapted this youtube video to add post details
     //     https://www.youtube.com/watch?v=CGIgC3l4Bz0&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=16&ab_channel=KODDev
 
     String postid;
     private RecyclerView recyclerView;
-    private PostAdapter postAdapter;
+    private FanPostAdapter postAdapter;
     private List<Post> postList;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_busker_post_details, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_fan_post_details, container, false);
+
 
         SharedPreferences preferences = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         postid = preferences.getString("postid", "none");
@@ -51,7 +53,7 @@ public class BuskerPostDetailsFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         postList = new ArrayList<>();
-        postAdapter = new PostAdapter(getContext(), postList);
+        postAdapter = new FanPostAdapter(getContext(), postList);
         recyclerView.setAdapter(postAdapter);
 
         readPost();
@@ -78,4 +80,4 @@ public class BuskerPostDetailsFragment extends Fragment {
             }
         });
     }
-}
+    }

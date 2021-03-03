@@ -11,10 +11,10 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.sample.apps.is4447.gobusker.Fragment.BuskerHomeFragment;
-import com.sample.apps.is4447.gobusker.Fragment.BuskerNotificationFragment;
-import com.sample.apps.is4447.gobusker.Fragment.BuskerProfileFragment;
-import com.sample.apps.is4447.gobusker.Fragment.BuskerSearchFragment;
+import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerHomeFragment;
+import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerNotificationFragment;
+import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerProfileFragment;
+import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerSearchFragment;
 import com.sample.apps.is4447.gobusker.R;
 
 public class BuskerFeed extends AppCompatActivity {

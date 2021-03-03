@@ -1,5 +1,6 @@
 package com.sample.apps.is4447.gobusker.Adapter;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.sample.apps.is4447.gobusker.Busker.BuskerComments;
 import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerPostDetailsFragment;
 import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerProfileFragment;
+import com.sample.apps.is4447.gobusker.Fan.FanComments;
+import com.sample.apps.is4447.gobusker.FanFragments.FanPostDetailsFragment;
+import com.sample.apps.is4447.gobusker.FanFragments.FanProfileFragment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.Model.Post;
 import com.sample.apps.is4447.gobusker.R;
@@ -36,14 +40,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //https://www.youtube.com/watch?v=mk2CrU-awkM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=7&ab_channel=KODDev
 //I used this Youtube video for reference for displaying posts
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
+public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHolder> {
 
     public Context mContext;
     public List<Post> mPost;
 
     private FirebaseUser firebaseBusker;
 
-    public PostAdapter(Context mContext, List<Post> mPost) {
+    public FanPostAdapter(Context mContext, List<Post> mPost) {
         this.mContext = mContext;
         this.mPost = mPost;
     }
@@ -51,8 +55,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.busker_post_item, viewGroup, false);
-        return new PostAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.fan_post_item, viewGroup, false);
+        return new FanPostAdapter.ViewHolder(view);
     }
 
 
@@ -71,22 +75,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             viewHolder.description.setText(post.getDescription());
         }
         publisherInfo(viewHolder.image_profile, viewHolder.username, viewHolder.publisher,post.getPublisher());
-       isLikes(post.getPostid(), viewHolder.like);
-       nrLikes(viewHolder.likes, post.getPostid());
-       getComments(post.getPostid(), viewHolder.comments);
-       isSaved(post.getPostid(), viewHolder.save);
+        isLikes(post.getPostid(), viewHolder.like);
+        nrLikes(viewHolder.likes, post.getPostid());
+        getComments(post.getPostid(), viewHolder.comments);
+        isSaved(post.getPostid(), viewHolder.save);
 
-       viewHolder.image_profile.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
-               editor.putString("profileid", post.getPublisher());
-               editor.apply();
+        viewHolder.image_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", post.getPublisher());
+                editor.apply();
 
-               ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                       new BuskerProfileFragment()).commit();
-           }
-       });
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_fan,
+                        new BuskerProfileFragment()).commit();
+            }
+        });
 
         viewHolder.username.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,8 +99,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 editor.putString("profileid", post.getPublisher());
                 editor.apply();
 
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BuskerProfileFragment()).commit();
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_fan,
+                        new FanProfileFragment()).commit();
             }
         });
         viewHolder.publisher.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +124,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 editor.putString("postid", post.getPostid());
                 editor.apply();
 
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BuskerPostDetailsFragment()).commit();
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_fan,
+                        new FanPostDetailsFragment()).commit();
             }
         });
 
@@ -129,17 +133,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
 
         viewHolder.save.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               if (viewHolder.save.getTag().equals("save")) {
-                   FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
-                           .child(post.getPostid()).setValue(true);
-               } else {
-                   FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
-                           .child(post.getPostid()).removeValue();
-               }
-           }
-       });
+            @Override
+            public void onClick(View v) {
+                if (viewHolder.save.getTag().equals("save")) {
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
+                            .child(post.getPostid()).setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
+                            .child(post.getPostid()).removeValue();
+                }
+            }
+        });
 
         //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
         //I used this video for reference to adding likes to posts
@@ -160,7 +164,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         viewHolder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, BuskerComments.class);
+                Intent intent = new Intent(mContext, FanComments.class);
                 intent.putExtra("postid", post.getPostid());
                 intent.putExtra("publisherid", post.getPublisher());
                 mContext.startActivity(intent);
@@ -169,7 +173,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         viewHolder.comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, BuskerComments.class);
+                Intent intent = new Intent(mContext, FanComments.class);
                 intent.putExtra("postid", post.getPostid());
                 intent.putExtra("publisherid", post.getPublisher());
                 mContext.startActivity(intent);
@@ -205,7 +209,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
 
     }
-//I used this video for reference for sending comments onto posts
+    //I used this video for reference for sending comments onto posts
 //    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev
     private void getComments(String postid, TextView comments){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
@@ -222,11 +226,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
     }
-  //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
+    //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
     //I used this video for reference to adding likes to posts
     private void isLikes(String postid, ImageView imageView){
 
-       final FirebaseUser firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("Likes")

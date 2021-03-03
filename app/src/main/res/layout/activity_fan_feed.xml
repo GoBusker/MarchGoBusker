@@ -4,43 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Busker.BuskerFeed"
+    tools:context=".Fan.FanFeed"
     android:id="@+id/relativeLayout">
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragment_container"
-        tools:layout_conversion_absoluteHeight="675dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_conversion_absoluteWidth="411dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container_fan"
+        android:layout_above="@+id/bottom"
+/>
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="wrap_content"
         android:id="@+id/bottom"
         android:layout_height="wrap_content"
-        tools:layout_conversion_absoluteHeight="56dp"
-        tools:layout_editor_absoluteY="675dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_conversion_absoluteWidth="411dp"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+      >
 
-      <!--  I referenced this Youtube video for the bottom navigation
-        https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev -->
+        <!--  I referenced this Youtube video for the bottom navigation
+          https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev -->
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bottom_navigation"
+            android:id="@+id/fan_bottom_navigation"
             app:itemIconTint="@color/cardview_dark_background"
             app:labelVisibilityMode="unlabeled"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/bottom_navigation"
+            app:menu="@menu/fan_bottom_navigation"
             tools:layout_conversion_absoluteHeight="56dp"
             tools:layout_editor_absoluteY="675dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_conversion_absoluteWidth="411dp" />
+
 
 
     </com.google.android.material.appbar.AppBarLayout>

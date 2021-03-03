@@ -109,6 +109,10 @@ private void register(String username, String firstname, String email, String pa
                         hashMap.put("firstname", firstname);
                         hashMap.put("bio", "");
                         hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/gobusker-e1749.appspot.com/o/IMG_20180107_173528_102.jpg?alt=media&token=ecdcfb13-4fc1-412a-b7f6-a773f242fa05");
+                        hashMap.put("payment10", "");
+                        hashMap.put("payment2", "");
+                        hashMap.put("payment5", "");
+                        hashMap.put("payment20", "");
                      /*   Busker busker = new Busker(firstnamereg, bioreg, emailreg, userId);
                         FirebaseDatabase.getInstance().getReference("Buskers")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

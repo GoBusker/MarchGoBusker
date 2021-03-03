@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuskerFragments.BuskerProfileFragment">
+    tools:context=".FanFragments.FanProfileFragment">
 
     <!-- I used this Youtube video for reference for creating the buskers profile
-    https://www.youtube.com/watch?v=AkKjEkWWJEc&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=11&ab_channel=KODDev -->
+      https://www.youtube.com/watch?v=AkKjEkWWJEc&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=11&ab_channel=KODDev -->
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -88,14 +88,14 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/posts"
-                            android:textColor="@color/design_default_color_primary_dark"
-                            android:layout_gravity="center"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/posts"
+                                android:textColor="@color/design_default_color_primary_dark"
+                                android:layout_gravity="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -103,20 +103,20 @@
                                 android:text="posts"/>
                         </LinearLayout>
 
-                         <LinearLayout
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                             android:layout_marginLeft="35dp"
+                            android:layout_marginLeft="35dp"
                             android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/followers"
-                            android:textColor="@color/design_default_color_primary_dark"
-                            android:layout_gravity="center"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/followers"
+                                android:textColor="@color/design_default_color_primary_dark"
+                                android:layout_gravity="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                                 android:text="followers"/>
 
 
-                    </LinearLayout>
+                        </LinearLayout>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
 
                         </LinearLayout>
 
-            </LinearLayout>
+                    </LinearLayout>
 
                     <Button
                         android:layout_width="match_parent"
@@ -157,8 +157,8 @@
                         android:id="@+id/edit_profile"
                         android:background="@color/black"/>
 
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -199,28 +199,13 @@
                 android:orientation="horizontal"
                 >
 
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/my_photos"
-                    android:src="@drawable/ic_apps"
 
-                    />
 
                 <ImageButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/saved_photos"
-                    android:src="@drawable/ic_save"
-
-                    />
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/add_payment"
+                    android:id="@+id/send_Payment"
                     android:src="@drawable/ic_money"
 
                     />
@@ -241,5 +226,6 @@
         </LinearLayout>
 
     </ScrollView>
+
 
 </RelativeLayout>

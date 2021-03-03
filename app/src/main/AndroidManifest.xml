@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoBusker">
-        <activity android:name=".Busker.BuskerEditProfile"></activity>
+        <activity android:name=".Fan.FanPayment" />
+        <activity android:name=".Busker.BuskerPayment" />
+        <activity android:name=".Fan.FanComments" />
+        <activity android:name=".Fan.FanFeed" />
+        <activity android:name=".Busker.BuskerEditProfile" />
         <activity android:name=".Busker.BuskerComments" />
         <activity android:name=".Busker.BuskerFeed" />
         <activity android:name=".Fan.fanForgot" />
@@ -36,8 +40,8 @@ https://www.youtube.com/watch?v=GV1qbi59rgc&list=PLzLFqCABnRQduspfbu2empaaY9BoIG
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

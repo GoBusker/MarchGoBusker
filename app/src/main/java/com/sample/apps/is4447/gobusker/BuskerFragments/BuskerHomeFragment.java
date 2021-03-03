@@ -1,4 +1,4 @@
-package com.sample.apps.is4447.gobusker.Fragment;
+package com.sample.apps.is4447.gobusker.BuskerFragments;
 
 import android.os.Bundle;
 
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sample.apps.is4447.gobusker.Adapter.FanPostAdapter;
 import com.sample.apps.is4447.gobusker.Adapter.PostAdapter;
 import com.sample.apps.is4447.gobusker.Model.Post;
 import com.sample.apps.is4447.gobusker.R;
@@ -28,7 +28,7 @@ import java.util.List;
 
 public class BuskerHomeFragment extends Fragment {
     private RecyclerView recyclerView;
-    private PostAdapter postAdapter;
+    private FanPostAdapter postAdapter;
     private List<Post> postLists;
 
     private List<String> followingList;
@@ -50,7 +50,7 @@ public class BuskerHomeFragment extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         postLists = new ArrayList<>();
-        postAdapter = new PostAdapter(getContext(), postLists);
+        postAdapter = new FanPostAdapter(getContext(), postLists);
         recyclerView.setAdapter(postAdapter);
 
         checkFollowing();

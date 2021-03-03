@@ -1,4 +1,4 @@
-package com.sample.apps.is4447.gobusker.Fragment;
+package com.sample.apps.is4447.gobusker.BuskerFragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,15 +28,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sample.apps.is4447.gobusker.Adapter.MyPhotoAdapter;
+import com.sample.apps.is4447.gobusker.Busker.BuskerComments;
 import com.sample.apps.is4447.gobusker.Busker.BuskerEditProfile;
-import com.sample.apps.is4447.gobusker.Busker.BuskerFeed;
+import com.sample.apps.is4447.gobusker.Busker.BuskerPayment;
+import com.sample.apps.is4447.gobusker.Busker.buskerForgot;
 import com.sample.apps.is4447.gobusker.Busker.buskerLogin;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.Model.Post;
 import com.sample.apps.is4447.gobusker.R;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,6 +50,8 @@ public class BuskerProfileFragment extends Fragment {
 
     private List<String> mySaves;
 
+
+
     RecyclerView recyclerView_saves;
     MyPhotoAdapter myPhotoAdapter_saves;
     List<Post> postList_saves;
@@ -60,7 +63,7 @@ public class BuskerProfileFragment extends Fragment {
     FirebaseUser firebaseBusker;
     String profileid;
 
-    ImageButton my_photos, saved_photos;
+    ImageButton my_photos, saved_photos, add_payment;
 
 
     @Override
@@ -84,6 +87,8 @@ public class BuskerProfileFragment extends Fragment {
         edit_profile = view.findViewById(R.id.edit_profile);
         my_photos = view.findViewById(R.id.my_photos);
         saved_photos = view.findViewById(R.id.saved_photos);
+
+        add_payment = view.findViewById(R.id.add_payment);
 
         //I adapted this Youtube video to have all busker posts visible on their profile
         // https://www.youtube.com/watch?v=4HKEApz-XOM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=14&ab_channel=KODDev
@@ -160,6 +165,15 @@ public class BuskerProfileFragment extends Fragment {
                 recyclerView_saves.setVisibility(View.VISIBLE);
             }
         });
+
+        add_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), BuskerPayment.class));
+            }
+        });
+
+
 
         return view;
     }

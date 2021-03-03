@@ -83,7 +83,7 @@ public class fanLogin extends AppCompatActivity {
                             FirebaseUser fan = FirebaseAuth.getInstance().getCurrentUser();
 
                             if(fan.isEmailVerified()) {
-                                Intent i = new Intent(fanLogin.this, fanHomePage.class);
+                                Intent i = new Intent(fanLogin.this, FanFeed.class);
                                 startActivity(i);
                             }else{
                                 //Code acquired and modified from this youtube video for firebase email verification functionality

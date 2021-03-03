@@ -27,7 +27,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
+public class FanCommentAdapter extends RecyclerView.Adapter<FanCommentAdapter.ViewHolder> {
 
     // I used this Youtube video as a reference for displaying comments under posts
     //    https://www.youtube.com/watch?v=V2lai8cJIkk&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=10&ab_channel=KODDev
@@ -37,7 +37,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
     private FirebaseUser firebaseBusker;
 
-    public CommentAdapter(Context mContext, List<Comment> mComment) {
+    public void Busker(){
+
+    }
+
+    public FanCommentAdapter(Context mContext, List<Comment> mComment) {
         this.mContext = mContext;
         this.mComment = mComment;
     }
@@ -45,8 +49,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.comment_item, viewGroup, false);
-        return new CommentAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.comment_item_fan, viewGroup, false);
+        return new FanCommentAdapter.ViewHolder(view);
     }
 
     @Override
@@ -55,8 +59,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         Comment comment = mComment.get(i);
 
         viewHolder.comment.setText(comment.getComment());
-        getBuskerInfo(viewHolder.image_profile, viewHolder.username, comment.getPublisher());
-        getFanInfo(viewHolder.username, comment.getPublisher());
+      getBuskerInfo(viewHolder.image_profile, viewHolder.username, comment.getPublisher());
+       getFanInfo(viewHolder.username, comment.getPublisher());
 
         viewHolder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,46 +88,28 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-            public ImageView image_profile;
-            public TextView username, comment;
+        public ImageView image_profile;
+        public TextView username, comment;
 
-            public ViewHolder(@NonNull View itemView){
-                super(itemView);
+        public ViewHolder(@NonNull View itemView){
+            super(itemView);
 
-                image_profile = itemView.findViewById(R.id.image_profile);
-                username = itemView.findViewById(R.id.username);
-                comment = itemView.findViewById(R.id.comment);
+            image_profile = itemView.findViewById(R.id.image_profile);
+            username = itemView.findViewById(R.id.username);
+            comment = itemView.findViewById(R.id.comment);
 
-            }
         }
-        private void getBuskerInfo(ImageView imageView, TextView username, String publisherid){
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Buskers").child(publisherid);
-
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child("Buskers").exists()) {
-                        Busker busker = dataSnapshot.getValue(Busker.class);
-                        Glide.with(mContext).load(busker.getImageUrl()).into(imageView);
-                        username.setText(busker.getUsername());
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-    private void getFanInfo(TextView username, String publisherid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Fans").child(publisherid);
+    }
+    private void getBuskerInfo(ImageView imageView, TextView username, String publisherid) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Buskers").child(publisherid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Fan").exists()) {
-                    Fan fan = dataSnapshot.getValue(Fan.class);
-                    username.setText(fan.getFirstname());
+                if (dataSnapshot.child("Buskers").exists()) {
+                    Busker busker = dataSnapshot.getValue(Busker.class);
+                    Glide.with(mContext).load(busker.getImageUrl()).into(imageView);
+                    username.setText(busker.getUsername());
                 }
             }
 
@@ -133,5 +119,24 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             }
         });
     }
+        private void getFanInfo(TextView username, String publisherid){
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Fans").child(publisherid);
+
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child("Fan").exists()) {
+                        Fan fan = dataSnapshot.getValue(Fan.class);
+                        username.setText(fan.getFirstname());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
     }
+
+}
 

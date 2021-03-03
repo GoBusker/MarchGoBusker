@@ -3,36 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuskerFragments.BuskerPostDetailsFragment">
+    tools:context=".FanFragments.FanHomeFragment">
 
-    <!--
-    I adapted this youtube video to add post details
-     https://www.youtube.com/watch?v=CGIgC3l4Bz0&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=16&ab_channel=KODDev
-    -->
-
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/bar" />
+
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
             android:background="?android:attr/windowBackground">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <!-- I used this Youtube video as a refrence for creating the home screen
+                https://www.youtube.com/watch?v=tpRoOyfRxbA&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=6&ab_channel=KODDev -->
 
-                <TextView
+                <ImageView
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_music" />
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:text="Photo"
-                    android:textColor="@color/design_default_color_primary_dark"/>
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_inbox" />
+
 
             </RelativeLayout>
 
@@ -40,13 +50,5 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bar"
-        android:id="@+id/recycler_view">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

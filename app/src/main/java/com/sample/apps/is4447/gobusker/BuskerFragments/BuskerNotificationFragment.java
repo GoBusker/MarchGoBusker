@@ -1,4 +1,4 @@
-package com.sample.apps.is4447.gobusker.Fragment;
+package com.sample.apps.is4447.gobusker.BuskerFragments;
 
 import android.os.Bundle;
 

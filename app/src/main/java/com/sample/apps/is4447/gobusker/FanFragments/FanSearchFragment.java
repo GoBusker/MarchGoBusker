@@ -1,4 +1,4 @@
-package com.sample.apps.is4447.gobusker.Fragment;
+package com.sample.apps.is4447.gobusker.FanFragments;
 
 import android.os.Bundle;
 
@@ -27,20 +27,18 @@ import com.sample.apps.is4447.gobusker.R;
 import java.util.ArrayList;
 import java.util.List;
 
-// I referenced this Youtube video for busker search and follow
-//https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev
-public class BuskerSearchFragment extends Fragment {
-private RecyclerView recyclerView;
-private BuskerAdapter buskerAdapter;
-private List<Busker> mBuskers;
+public class FanSearchFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private BuskerAdapter buskerAdapter;
+    private List<Busker> mBuskers;
 
-EditText search_bar;
-// <!-- I referenced this Youtube video for busker search and follow
-//    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
+    EditText search_bar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_busker_search, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_fan_search, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -115,5 +113,4 @@ EditText search_bar;
             }
         });
     }
-
-}
+    }
