@@ -235,10 +235,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(firebaseBusker.getUid()).exists()){
-                    imageView.setImageResource(R.drawable.ic_liked);
+                    imageView.setImageResource(R.drawable.ic_people_filled);
                     imageView.setTag("liked");
                 } else{
-                    imageView.setImageResource(R.drawable.ic_like);
+                    imageView.setImageResource(R.drawable.ic_people);
                     imageView.setTag("like");
                 }
             }
@@ -257,7 +257,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                likes.setText(dataSnapshot.getChildrenCount()+" likes");
+                likes.setText(dataSnapshot.getChildrenCount()+" attendees");
             }
 
             @Override

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class BuskerHomeFragment extends Fragment {
     private RecyclerView recyclerView;
-    private FanPostAdapter postAdapter;
+    private PostAdapter postAdapter;
     private List<Post> postLists;
 
     private List<String> followingList;
@@ -50,7 +50,7 @@ public class BuskerHomeFragment extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         postLists = new ArrayList<>();
-        postAdapter = new FanPostAdapter(getContext(), postLists);
+        postAdapter = new PostAdapter(getContext(), postLists);
         recyclerView.setAdapter(postAdapter);
 
         checkFollowing();

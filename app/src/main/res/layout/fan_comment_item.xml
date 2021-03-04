@@ -6,7 +6,7 @@
     <!-- I used this Youtube video as a reference for displaying comments under posts
    https://www.youtube.com/watch?v=V2lai8cJIkk&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=10&ab_channel=KODDev -->
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/image_profile"/>

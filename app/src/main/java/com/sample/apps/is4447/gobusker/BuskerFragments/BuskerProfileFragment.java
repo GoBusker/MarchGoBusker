@@ -40,11 +40,12 @@ import com.sample.apps.is4447.gobusker.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 
 public class BuskerProfileFragment extends Fragment {
 
-    ImageView image_profile,options;
+    ImageView image_profiled,options;
     TextView posts, followers, following, fullname, bio, username;
     Button edit_profile;
 
@@ -65,6 +66,8 @@ public class BuskerProfileFragment extends Fragment {
 
     ImageButton my_photos, saved_photos, add_payment;
 
+    private String image;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +79,7 @@ public class BuskerProfileFragment extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
-        image_profile = view.findViewById(R.id.image_profile);
+        image_profiled = (ImageView) view.findViewById(R.id.image_profile);
         options = view.findViewById(R.id.options);
         posts = view.findViewById(R.id.posts);
         followers = view.findViewById(R.id.followers);
@@ -178,7 +181,7 @@ public class BuskerProfileFragment extends Fragment {
         return view;
     }
 
-    private void buskerInfo(){
+    private void buskerInfo() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(profileid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -188,7 +191,6 @@ public class BuskerProfileFragment extends Fragment {
                 }
                 Busker busker = dataSnapshot.getValue(Busker.class);
 
-                Glide.with(getContext()).load(busker.getImageUrl()).into(image_profile);
                 username.setText(busker.getUsername());
                 fullname.setText(busker.getFirstname());
                 bio.setText(busker.getBio());
@@ -200,7 +202,31 @@ public class BuskerProfileFragment extends Fragment {
 
             }
         });
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
+                    Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
+
+                    Glide.clear(image_profiled);
+                    if (map.get("imageurl") != null) {
+                        image = map.get("imageurl").toString();
+                        Glide.with(getActivity()).load(image).into(image_profiled);
+                    }
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
     }
+
+
 
     private void checkFollow(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()

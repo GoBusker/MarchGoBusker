@@ -27,11 +27,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
+                    android:textSize="20sp"
                     android:maxLines="1"
                     android:textStyle="bold"
                     android:id="@+id/username"
-                    android:textColor="@color/design_default_color_primary_dark"/>
+                    android:textColor="@color/black"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
                 android:id="@+id/top_bar"
                 android:padding="20dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/image_profile"/>
@@ -92,7 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/posts"
-                            android:textColor="@color/design_default_color_primary_dark"
+                            android:textColor="@color/black"
                             android:layout_gravity="center"
                             android:textSize="20sp"
                             android:textStyle="bold"/>
@@ -113,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/followers"
-                            android:textColor="@color/design_default_color_primary_dark"
+                            android:textColor="@color/black"
                             android:layout_gravity="center"
                             android:textSize="20sp"
                             android:textStyle="bold"/>
@@ -135,7 +135,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/following"
-                                android:textColor="@color/design_default_color_primary_dark"
+                                android:textColor="@color/black"
                                 android:layout_gravity="center"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
@@ -175,7 +175,7 @@
                     android:id="@+id/fullname"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:textColor="@color/design_default_color_primary_dark"/>
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
                     android:layout_marginTop="5dp"
                     android:id="@+id/bio"
                     android:maxLines="5"
-                    android:textColor="@color/design_default_color_primary_dark"
+                    android:textColor="@color/black"
                     />
 
             </LinearLayout>

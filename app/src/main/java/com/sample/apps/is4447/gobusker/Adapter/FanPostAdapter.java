@@ -78,7 +78,7 @@ public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHold
         isLikes(post.getPostid(), viewHolder.like);
         nrLikes(viewHolder.likes, post.getPostid());
         getComments(post.getPostid(), viewHolder.comments);
-        isSaved(post.getPostid(), viewHolder.save);
+        //isSaved(post.getPostid(), viewHolder.save);
 
         viewHolder.image_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,18 +132,18 @@ public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHold
 
 
 
-        viewHolder.save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (viewHolder.save.getTag().equals("save")) {
-                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
-                            .child(post.getPostid()).setValue(true);
-                } else {
-                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
-                            .child(post.getPostid()).removeValue();
-                }
-            }
-        });
+//        viewHolder.save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (viewHolder.save.getTag().equals("save")) {
+//                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
+//                            .child(post.getPostid()).setValue(true);
+//                } else {
+//                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseBusker.getUid())
+//                            .child(post.getPostid()).removeValue();
+//                }
+//            }
+//        });
 
         //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
         //I used this video for reference to adding likes to posts
@@ -239,10 +239,10 @@ public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHold
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(firebaseBusker.getUid()).exists()){
-                    imageView.setImageResource(R.drawable.ic_liked);
+                    imageView.setImageResource(R.drawable.ic_people_filled);
                     imageView.setTag("liked");
                 } else{
-                    imageView.setImageResource(R.drawable.ic_like);
+                    imageView.setImageResource(R.drawable.ic_people);
                     imageView.setTag("like");
                 }
             }
@@ -261,7 +261,7 @@ public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHold
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                likes.setText(dataSnapshot.getChildrenCount()+" likes");
+                likes.setText(dataSnapshot.getChildrenCount()+" attendees");
             }
 
             @Override
@@ -294,28 +294,28 @@ public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHold
     }
     //I adapted this Youtube video to add saving post functionality
     //https://www.youtube.com/watch?v=uloDNWsM__g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=15&ab_channel=KODDev
-    private void isSaved(String postid, ImageView imageView){
-        FirebaseUser firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
+//    private void isSaved(String postid, ImageView imageView){
+//        FirebaseUser firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Saves")
+//                .child(firebaseBusker.getUid());
+//
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.child(postid).exists()){
+//                    imageView.setImageResource(R.drawable.ic_save_black);
+//                    imageView.setTag("saved");
+//                } else {
+//                    imageView.setImageResource(R.drawable.ic_save_white);
+//                    imageView.setTag("save");
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Saves")
-                .child(firebaseBusker.getUid());
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(postid).exists()){
-                    imageView.setImageResource(R.drawable.ic_save_black);
-                    imageView.setTag("saved");
-                } else {
-                    imageView.setImageResource(R.drawable.ic_save_white);
-                    imageView.setTag("save");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 }

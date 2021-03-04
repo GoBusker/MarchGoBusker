@@ -98,7 +98,7 @@ public class BuskerComments extends AppCompatActivity {
                 }
             }
         });
-        getImage();
+        //getImage();
         readComments();
     }
     //I used this video for reference for sending comments onto posts
@@ -115,22 +115,22 @@ public class BuskerComments extends AppCompatActivity {
     }
 //I used this video for reference for sending comments onto posts
 //    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev
-    private void getImage(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Busker busker = dataSnapshot.getValue(Busker.class);
-                Glide.with(getApplicationContext()).load(busker.getImageUrl()).into(image_profile);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    private void getImage(){
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
+//
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Busker busker = dataSnapshot.getValue(Busker.class);
+//                Glide.with(getApplicationContext()).load(busker.getImageUrl()).into(image_profile);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 // I used this Youtube video as a reference for displaying comments under posts
 //    https://www.youtube.com/watch?v=V2lai8cJIkk&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=10&ab_channel=KODDev
     private void readComments(){

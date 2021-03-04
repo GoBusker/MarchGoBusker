@@ -106,12 +106,13 @@ public class FanCommentAdapter extends RecyclerView.Adapter<FanCommentAdapter.Vi
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("Buskers").exists()) {
-                    Busker busker = dataSnapshot.getValue(Busker.class);
-                    Glide.with(mContext).load(busker.getImageUrl()).into(imageView);
+
+                Busker busker = dataSnapshot.getValue(Busker.class);
+                if (busker != null) {
                     username.setText(busker.getUsername());
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -125,8 +126,9 @@ public class FanCommentAdapter extends RecyclerView.Adapter<FanCommentAdapter.Vi
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.child("Fan").exists()) {
+
                         Fan fan = dataSnapshot.getValue(Fan.class);
+                    if (fan != null) {
                         username.setText(fan.getFirstname());
                     }
                 }

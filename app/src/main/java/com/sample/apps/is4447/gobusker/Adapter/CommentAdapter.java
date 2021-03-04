@@ -2,6 +2,7 @@ package com.sample.apps.is4447.gobusker.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.sample.apps.is4447.gobusker.Model.Comment;
 import com.sample.apps.is4447.gobusker.Model.Fan;
 import com.sample.apps.is4447.gobusker.R;
 
+import java.io.IOException;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -55,8 +57,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         Comment comment = mComment.get(i);
 
         viewHolder.comment.setText(comment.getComment());
-        getBuskerInfo(viewHolder.image_profile, viewHolder.username, comment.getPublisher());
-        getFanInfo(viewHolder.username, comment.getPublisher());
+       getBuskerInfo(viewHolder.image_profile, viewHolder.username, comment.getPublisher());
+      getFanInfo(viewHolder.username, comment.getPublisher());
 
         viewHolder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,24 +98,24 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
             }
         }
-        private void getBuskerInfo(ImageView imageView, TextView username, String publisherid){
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Buskers").child(publisherid);
+    private void getBuskerInfo(ImageView imageView, TextView username, String publisherid) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Buskers").child(publisherid);
 
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child("Buskers").exists()) {
-                        Busker busker = dataSnapshot.getValue(Busker.class);
-                        Glide.with(mContext).load(busker.getImageUrl()).into(imageView);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              //  if (dataSnapshot.child("Buskers").exists()) {
+                    Busker busker = dataSnapshot.getValue(Busker.class);
+                    if (busker != null){
                         username.setText(busker.getUsername());
                     }
-                }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
+            }
+        });
         }
     private void getFanInfo(TextView username, String publisherid){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Fans").child(publisherid);
@@ -121,10 +123,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Fan").exists()) {
                     Fan fan = dataSnapshot.getValue(Fan.class);
-                    username.setText(fan.getFirstname());
-                }
+                    if (fan != null) {
+                        username.setText(fan.getFirstname());
+                    }
             }
 
             @Override

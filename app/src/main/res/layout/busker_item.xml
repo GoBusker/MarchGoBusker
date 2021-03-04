@@ -4,13 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
+    android:background="@drawable/background_border"
+
     >
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+  <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:id="@+id/image_profile"
         android:src="@mipmap/ic_launcher"
         />
+
+
     <!--I used this Youtube video for reference for creating the home/feed layout
     //https://www.youtube.com/watch?v=tpRoOyfRxbA&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=6&ab_channel=KODDev -->
 
@@ -30,23 +34,27 @@
         android:text="Username"
         android:maxLines="1"
         android:textStyle="bold"
-        android:textColor="@color/design_default_color_primary_dark"/>
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fullname"
         android:text="Full Name"
+        android:textSize="15dp"
         android:maxLines="1"/>
+    </LinearLayout>
 
-</LinearLayout>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:background="@drawable/ic_launcher_foreground"
         android:id="@+id/btn_follow"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/white"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:visibility="gone"/>

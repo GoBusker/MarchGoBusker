@@ -2,10 +2,12 @@ package com.sample.apps.is4447.gobusker.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,16 +23,20 @@ import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
 
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder> {
 
     private Context nContext;
     private List<Busker> mBuskers;
+
+    private String image;
+
 
     private FirebaseUser firebaseBusker;
 
@@ -58,8 +64,13 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
 
         viewHolder.username.setText(busker.getUsername());
         viewHolder.fullname.setText(busker.getFirstname());
-        Glide.with(nContext).load(busker.getImageUrl()).into(viewHolder.image_profile);
+       Glide.with(nContext).load(busker.getImageUrl()).into(viewHolder.image_profile);
+
+
+
         isFollowing(busker.getId(), viewHolder.btn_follow);
+
+
 
 
         if(busker.getId().equals(firebaseBusker.getUid())){
@@ -107,7 +118,7 @@ viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
 
         public TextView username;
         public TextView fullname;
-        public CircleImageView image_profile;
+        public ImageView image_profile;
         public Button btn_follow;
 
 

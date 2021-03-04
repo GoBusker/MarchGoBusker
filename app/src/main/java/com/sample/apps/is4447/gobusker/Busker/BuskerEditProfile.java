@@ -144,7 +144,7 @@ public class BuskerEditProfile extends AppCompatActivity {
             uploadTask.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
-                    if (!task.isSuccessful()){
+                    if (!task.isSuccessful()) {
                         throw task.getException();
                     }
                     return filereference.getDownloadUrl();
@@ -152,28 +152,29 @@ public class BuskerEditProfile extends AppCompatActivity {
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         String myUrl = downloadUri.toString();
 
                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
 
                         HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("imageurl", ""+myUrl);
+                        hashMap.put("imageurl", "" + myUrl);
 
                         reference.updateChildren(hashMap);
                         pd.dismiss();
-                    } else{
+                    } else {
                         Toast.makeText(BuskerEditProfile.this, "Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
+
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(BuskerEditProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else{
+        } else {
             Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
         }
     }
@@ -182,14 +183,16 @@ public class BuskerEditProfile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            mImageUri = result.getUri();
-
-            uploadImage();
-        } else {
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+            if (resultCode == RESULT_OK) {
+                mImageUri = result.getUri();
+                uploadImage();
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Toast.makeText(getApplicationContext(), "Something gone wrong", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
+
 
