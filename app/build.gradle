@@ -41,7 +41,7 @@ dependencies {
 
 //https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev
     // I linked this implementation as apart of adding search and follow functionality
-//    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 

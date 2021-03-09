@@ -3,6 +3,7 @@ package com.sample.apps.is4447.gobusker.Busker;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -37,15 +38,19 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class BuskerEditProfile extends AppCompatActivity {
 
     //I adapted this Youtube video for edit profile functionality
     //    https://www.youtube.com/watch?v=3NYIwEpYbOA&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=17&ab_channel=KODDev
 
-    ImageView close, image_profile;
+    ImageView close;
+     CircleImageView image_profile;
     TextView save, tv_change;
     MaterialEditText fullname, username, bio;
+
+    private String image;
 
     FirebaseUser firebaseBusker;
 
@@ -77,7 +82,13 @@ public class BuskerEditProfile extends AppCompatActivity {
                 fullname.setText(busker.getFirstname());
                 username.setText(busker.getUsername());
                 bio.setText(busker.getBio());
-                Glide.with(getApplicationContext()).load(busker.getImageUrl()).into(image_profile);
+                Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+
+                Glide.clear(image_profile);
+                if (map.get("imageurl") != null) {
+                    image = map.get("imageurl").toString();
+                    Glide.with(getApplicationContext()).load(image).into(image_profile);
+                }
             }
 
             @Override

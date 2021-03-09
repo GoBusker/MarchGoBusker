@@ -71,6 +71,8 @@ public class FanMyPhotoAdapter extends RecyclerView.Adapter<FanMyPhotoAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            fan_post_image = itemView.findViewById(R.id.post_image);
         }
     }
 

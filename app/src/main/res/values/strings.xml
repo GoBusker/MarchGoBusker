@@ -19,8 +19,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
+    <string name="fanpay">Donate</string>
     <string name="revolut">10 Euro<a href="https://www.crunchyroll.com/attack-on-titan/episode-11-icon-the-battle-for-trost-7-623911"></a></string>
+
+
+    <string-array name="fandonate">
+        <item>Amount</item>
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+    </string-array>
 
 
 </resources>

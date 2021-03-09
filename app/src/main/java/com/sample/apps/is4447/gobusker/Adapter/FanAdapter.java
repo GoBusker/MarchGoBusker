@@ -2,7 +2,6 @@ package com.sample.apps.is4447.gobusker.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +18,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerProfileFragment;
+import com.sample.apps.is4447.gobusker.FanFragments.FanProfileFragment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
 
 import java.util.List;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder> {
-
+public class FanAdapter extends RecyclerView.Adapter<FanAdapter.ViewHolder>{
     private Context nContext;
     private List<Busker> mBuskers;
 
@@ -40,22 +37,19 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
 
     private FirebaseUser firebaseBusker;
 
-    public BuskerAdapter(Context nContext, List<Busker> mBuskers) {
+    public FanAdapter(Context nContext, List<Busker> mBuskers) {
         this.nContext = nContext;
         this.mBuskers = mBuskers;
     }
- // I referenced this Youtube video for busker search and follow
-   // https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(nContext).inflate(R.layout.busker_item, viewGroup, false);
-        return new BuskerAdapter.ViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(nContext).inflate(R.layout.busker_item, parent, false);
+        return new FanAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
         firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
 
         final Busker busker = mBuskers.get(i);
@@ -64,7 +58,7 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
 
         viewHolder.username.setText(busker.getUsername());
         viewHolder.fullname.setText(busker.getFirstname());
-       Glide.with(nContext).load(busker.getImageUrl()).into(viewHolder.image_profile);
+        Glide.with(nContext).load(busker.getImageUrl()).into(viewHolder.image_profile);
 
 
 
@@ -77,11 +71,6 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
             viewHolder.btn_follow.setVisibility(View.GONE);
         }
 
-        if(busker.getId().equals(firebaseBusker.getUid())){
-            viewHolder.itemView.setVisibility(View.GONE);
-        }
-
-
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,53 +78,50 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
                 editor.putString("profileid", busker.getId());
                 editor.apply();
 
-                ((FragmentActivity)nContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BuskerProfileFragment()).commit();
+                ((FragmentActivity)nContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_fan,
+                        new FanProfileFragment()).commit();
             }
         });
         // <!-- I referenced this Youtube video for busker search and follow
         //    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
-viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        if (viewHolder.btn_follow.getText().toString().equals("follow")){
-            FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
-                    .child("following").child(busker.getId()).setValue(true);
-            FirebaseDatabase.getInstance().getReference().child("Follow").child(busker.getId())
-                    .child("followers").child(firebaseBusker.getUid()).setValue(true);
-        } else {
-            FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
-                    .child("following").child(busker.getId()).removeValue();
-            FirebaseDatabase.getInstance().getReference().child("Follow").child(busker.getId())
-                    .child("followers").child(firebaseBusker.getUid()).removeValue();
-        }
+        viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (viewHolder.btn_follow.getText().toString().equals("follow")){
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
+                            .child("following").child(busker.getId()).setValue(true);
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(busker.getId())
+                            .child("followers").child(firebaseBusker.getUid()).setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
+                            .child("following").child(busker.getId()).removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(busker.getId())
+                            .child("followers").child(firebaseBusker.getUid()).removeValue();
+                }
+            }
+        });
     }
-});
-    }
-    // <!-- I referenced this Youtube video for busker search and follow
-    //    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
+
     @Override
     public int getItemCount() {
-        return mBuskers.size() - 1;
+        return mBuskers.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
         public TextView username;
         public TextView fullname;
         public ImageView image_profile;
         public Button btn_follow;
 
+    public ViewHolder(@NonNull View itemView) {
+        super(itemView);
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            username = itemView.findViewById(R.id.username);
-            fullname = itemView.findViewById(R.id.fullname);
-            image_profile = itemView.findViewById(R.id.image_profile);
-            btn_follow = itemView.findViewById(R.id.btn_follow);
-        }
+        username = itemView.findViewById(R.id.username);
+        fullname = itemView.findViewById(R.id.fullname);
+        image_profile = itemView.findViewById(R.id.image_profile);
+        btn_follow = itemView.findViewById(R.id.btn_follow);
     }
+}
     // <!-- I referenced this Youtube video for busker search and follow
     //    https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
     private void isFollowing(String userId, Button button){

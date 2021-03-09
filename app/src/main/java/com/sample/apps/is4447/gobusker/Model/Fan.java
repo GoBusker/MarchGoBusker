@@ -17,28 +17,33 @@ public class Fan {
         this.firstname = firstname;
     }
 
-    public String getBio() {
-        return bio;
-    }
 
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
 
     //simple busker class to be used as an input for the firebase system
     //declaring variables
-    public String email, firstname, bio, id;
+    public String email;
+    public String firstname;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String username;
+    public String id;
 
     //constructor
     public Fan(){
 
     }
     //instantiate class
-    public Fan( String firstname, String email, String bio){
-        this.email = email;
+    public Fan( String firstname, String username, String email){
         this.firstname = firstname;
-        this.bio = bio;
-        this.id = id;
+        this.username = username;
+        this.email = email;
     }
 
 

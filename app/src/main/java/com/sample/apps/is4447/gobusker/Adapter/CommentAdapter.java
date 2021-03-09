@@ -64,18 +64,18 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, BuskerFeed.class);
-                intent.putExtra("publisherid", comment.getPublisher());
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, BuskerFeed.class);
+//                intent.putExtra("publisherid", comment.getPublisher());
+//                mContext.startActivity(intent);
             }
         });
         viewHolder.image_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(mContext, BuskerFeed.class);
-                intent.putExtra("publisherid", comment.getPublisher());
-                mContext.startActivity(intent);
+//
+//                Intent intent = new Intent(mContext, BuskerFeed.class);
+//                intent.putExtra("publisherid", comment.getPublisher());
+//                mContext.startActivity(intent);
             }
         });
     }

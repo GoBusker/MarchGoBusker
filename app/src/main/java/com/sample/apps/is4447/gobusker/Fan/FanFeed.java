@@ -19,6 +19,8 @@ import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerProfileFragment;
 import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerSearchFragment;
 import com.sample.apps.is4447.gobusker.FanFragments.FanHomeFragment;
 import com.sample.apps.is4447.gobusker.FanFragments.FanNotificationFragment;
+import com.sample.apps.is4447.gobusker.FanFragments.FanOwnProfileFragment;
+import com.sample.apps.is4447.gobusker.FanFragments.FanProfileFragment;
 import com.sample.apps.is4447.gobusker.FanFragments.FanSearchFragment;
 import com.sample.apps.is4447.gobusker.R;
 
@@ -58,12 +60,12 @@ public class FanFeed extends AppCompatActivity {
                             case R.id.nav_favourite:
                                 selectedFragment = new FanNotificationFragment();
                                 break;
-//                            case R.id.nav_profile:
-//                                SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-//                                editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-//                                editor.apply();
-//                                selectedFragment = new FanProfileFragment();
-//                                break;
+                            case R.id.nav_profile:
+                                SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+                                editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                editor.apply();
+                                selectedFragment = new FanOwnProfileFragment();
+                                break;
                         }
                         if (selectedFragment != null){
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_fan,

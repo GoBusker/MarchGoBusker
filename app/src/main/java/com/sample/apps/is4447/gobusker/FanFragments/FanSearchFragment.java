@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.sample.apps.is4447.gobusker.Adapter.BuskerAdapter;
+import com.sample.apps.is4447.gobusker.Adapter.FanAdapter;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
 
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class FanSearchFragment extends Fragment {
     private RecyclerView recyclerView;
-    private BuskerAdapter buskerAdapter;
+    private FanAdapter buskerAdapter;
     private List<Busker> mBuskers;
 
     EditText search_bar;
@@ -47,7 +48,7 @@ public class FanSearchFragment extends Fragment {
         search_bar = view.findViewById(R.id.search_bar);
 
         mBuskers = new ArrayList<>();
-        buskerAdapter = new BuskerAdapter(getContext(), mBuskers);
+        buskerAdapter = new FanAdapter(getContext(), mBuskers);
         recyclerView.setAdapter(buskerAdapter);
 
         readBuskers();

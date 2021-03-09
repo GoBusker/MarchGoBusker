@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +27,7 @@ import com.sample.apps.is4447.gobusker.R;
 
 import java.util.HashMap;
 
-public class BuskerPayment extends AppCompatActivity {
+public class BuskerPayment extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
 
     EditText addPayment;
     Button btnPayment;
@@ -32,14 +36,9 @@ public class BuskerPayment extends AppCompatActivity {
 
     MaterialEditText payment10;
 
-    MaterialEditText payment2;
-    Button btnPayment2;
 
-    MaterialEditText payment5;
-    Button btnPayment5;
 
-    MaterialEditText payment20;
-    Button btnPayment20;
+
 
 
     @Override
@@ -47,68 +46,56 @@ public class BuskerPayment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busker_payment);
 
+        Spinner spinner = findViewById(R.id.busker_payment_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.fandonate, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
         payment10 = findViewById(R.id.addPayment);
         btnPayment = findViewById(R.id.btnPayment);
 
-        payment2 = findViewById(R.id.addPayment2);
-        btnPayment2 = findViewById(R.id.btnPayment2);
 
-        payment5 = findViewById(R.id.addPayment5);
-        btnPayment5 = findViewById(R.id.btnPayment5);
-
-        payment20 = findViewById(R.id.addPayment20);
-        btnPayment20 = findViewById(R.id.btnPayment20);
 
         firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Busker busker = snapshot.getValue(Busker.class);
-               payment10.setText(busker.getPayment10());
-                payment2.setText(busker.getPayment2());
-                payment5.setText(busker.getPayment5());
-                payment20.setText(busker.getPayment20());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                Busker busker = snapshot.getValue(Busker.class);
+//               payment10.setText(busker.getPayment10());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "10 euro donation set", Toast.LENGTH_SHORT).show();
-                updateProfile(payment10.getText().toString());
+                if  (spinner.getSelectedItemPosition() == 0) {
+                    Toast.makeText(getApplicationContext(), "No donation set", Toast.LENGTH_SHORT).show();
+                } else if (spinner.getSelectedItemPosition() == 1) {
+                    Toast.makeText(getApplicationContext(), "2 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile2(payment10.getText().toString());
+                } else if (spinner.getSelectedItemPosition() == 2){
+                    Toast.makeText(getApplicationContext(), "5 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile5(payment10.getText().toString());
+                } else if (spinner.getSelectedItemPosition() == 3){
+                    Toast.makeText(getApplicationContext(), "10 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile(payment10.getText().toString());
+                } else if (spinner.getSelectedItemPosition() == 4){
+                    Toast.makeText(getApplicationContext(), "20 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile20(payment10.getText().toString());
+                }
             }
         });
 
-        btnPayment2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "2 euro donation set", Toast.LENGTH_SHORT).show();
-                updateProfile2(payment2.getText().toString());
-            }
-        });
-
-        btnPayment5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "5 euro donation set", Toast.LENGTH_SHORT).show();
-                updateProfile5(payment5.getText().toString());
-            }
-        });
-
-        btnPayment20.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "20 euro donation set", Toast.LENGTH_SHORT).show();
-                updateProfile20(payment20.getText().toString());
-            }
-        });
 
 
 
@@ -141,5 +128,89 @@ public class BuskerPayment extends AppCompatActivity {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("payment20", payment20);
         reference.updateChildren(hashMap);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (position == 0) {
+
+        } else if(position == 1){
+            twoInfo();
+        } else if(position == 2){
+            fiveInfo();
+        } else if (position == 3){
+            tenInfo();
+        } else if (position == 4){
+            twentyInfo();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+    private void tenInfo() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Busker busker = dataSnapshot.getValue(Busker.class);
+                payment10.setText(busker.getPayment10());
+                payment10.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void twoInfo() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Busker busker = dataSnapshot.getValue(Busker.class);
+                payment10.setText(busker.getPayment2());
+               payment10.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void fiveInfo() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Busker busker = dataSnapshot.getValue(Busker.class);
+                payment10.setText(busker.getPayment5());
+                payment10.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void twentyInfo() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Busker busker = dataSnapshot.getValue(Busker.class);
+                payment10.setText(busker.getPayment20());
+                payment10.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

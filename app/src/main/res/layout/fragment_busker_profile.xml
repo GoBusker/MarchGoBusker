@@ -65,7 +65,7 @@
                 android:id="@+id/top_bar"
                 android:padding="20dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/image_profile"/>

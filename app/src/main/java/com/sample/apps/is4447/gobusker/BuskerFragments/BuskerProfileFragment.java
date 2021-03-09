@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,8 @@ import java.util.Map;
 
 public class BuskerProfileFragment extends Fragment {
 
-    ImageView image_profiled,options;
+    ImageView options;
+    CircleImageView image_profiled;
     TextView posts, followers, following, fullname, bio, username;
     Button edit_profile;
 
@@ -79,7 +81,7 @@ public class BuskerProfileFragment extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
-        image_profiled = (ImageView) view.findViewById(R.id.image_profile);
+        image_profiled = view.findViewById(R.id.image_profile);
         options = view.findViewById(R.id.options);
         posts = view.findViewById(R.id.posts);
         followers = view.findViewById(R.id.followers);

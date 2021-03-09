@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,8 @@ import java.util.Map;
 
 public class FanProfileFragment extends Fragment {
 
-    ImageView image_profiled,options;
+    ImageView options;
+    CircleImageView image_profiled;
     TextView posts, followers, following, fullname, bio, username;
     Button edit_profile;
 
@@ -61,7 +63,7 @@ MyPhotoAdapter myPhotoAdapter;
     FirebaseUser firebaseBusker;
     String profileid;
 
-    ImageButton send_payment;
+    Button send_payment;
 
     private String image;
 
@@ -82,7 +84,7 @@ MyPhotoAdapter myPhotoAdapter;
         options = view.findViewById(R.id.options);
         posts = view.findViewById(R.id.posts);
         followers = view.findViewById(R.id.followers);
-        following = view.findViewById(R.id.following);
+   //     following = view.findViewById(R.id.following);
         fullname = view.findViewById(R.id.fullname);
         bio = view.findViewById(R.id.bio);
         username = view.findViewById(R.id.username);
@@ -101,22 +103,22 @@ MyPhotoAdapter myPhotoAdapter;
 
         //I adapted this Youtube video to add saving post functionality
         //https://www.youtube.com/watch?v=uloDNWsM__g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=15&ab_channel=KODDev
-        recyclerView_saves = view.findViewById(R.id.recycler_view_save);
-        recyclerView_saves.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager_saves = new GridLayoutManager(getContext(), 3);
-        recyclerView_saves.setLayoutManager(linearLayoutManager_saves);
-        postList_saves = new ArrayList<>();
-        myPhotoAdapter_saves = new MyPhotoAdapter(getContext(), postList_saves);
-        recyclerView_saves.setAdapter(myPhotoAdapter_saves);
+//        recyclerView_saves = view.findViewById(R.id.recycler_view_save);
+//        recyclerView_saves.setHasFixedSize(true);
+//        LinearLayoutManager linearLayoutManager_saves = new GridLayoutManager(getContext(), 3);
+//        recyclerView_saves.setLayoutManager(linearLayoutManager_saves);
+//        postList_saves = new ArrayList<>();
+//        myPhotoAdapter_saves = new FanMyPhotoAdapter(getContext(), postList_saves);
+//        recyclerView_saves.setAdapter(myPhotoAdapter_saves);
 
         recyclerView.setVisibility(View.VISIBLE);
-        recyclerView_saves.setVisibility(View.GONE);
+     //   recyclerView_saves.setVisibility(View.GONE);
 
         buskerInfo();
         getFollowers();
         getNrPosts();
         myPhotos();
-        mysaves();
+      //  mysaves();
 
         if(profileid.equals(firebaseBusker.getUid())){
             edit_profile.setText("Edit Profile");
@@ -254,20 +256,20 @@ MyPhotoAdapter myPhotoAdapter;
 
             }
         });
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(profileid).child("following");
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                following.setText(""+dataSnapshot.getChildrenCount());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference()
+//                .child("Follow").child(profileid).child("following");
+//
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                following.setText(""+dataSnapshot.getChildrenCount());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
     private void getNrPosts(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");

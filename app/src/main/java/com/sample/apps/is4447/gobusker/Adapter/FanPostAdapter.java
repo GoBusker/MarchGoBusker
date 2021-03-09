@@ -88,7 +88,7 @@ public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHold
                 editor.apply();
 
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_fan,
-                        new BuskerProfileFragment()).commit();
+                        new FanProfileFragment()).commit();
             }
         });
 

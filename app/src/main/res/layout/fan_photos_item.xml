@@ -5,6 +5,7 @@
     <!-- I adapted this Youtube video to have all busker posts visible on their profile
      https://www.youtube.com/watch?v=4HKEApz-XOM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=14&ab_channel=KODDev
 -->
+
     <ImageView
         android:id="@+id/fan_post_image"
         android:layout_width="match_parent"

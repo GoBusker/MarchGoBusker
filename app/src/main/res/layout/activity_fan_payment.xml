@@ -7,120 +7,57 @@
     tools:context=".Fan.FanPayment">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:id="@+id/send_payments"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="536dp"
-        android:text="Donate €20: "
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/send_payments5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="112dp"
         android:autoLink="web"
-        android:text="5 Euro"
-        android:textColor="#000000"
+        android:text="Donation link"
+        android:textColor="#007521"
+        android:textColorLink="#007521"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fan_payment_spinner" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
-        android:text="Donate €5: "
-        android:textColor="#000000"
-        android:textSize="20dp"
+    <Spinner
+        android:id="@+id/fan_payment_spinner"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="284dp"
+        android:fadeScrollbars="true"
+        android:foregroundTint="#FFFFFF"
+        android:scrollbarSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/send_payments20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="436dp"
-        android:autoLink="web"
-        android:text="20 Euro"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:textStyle="bold"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/revolutlogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <TextView
         android:id="@+id/textView"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="Donate €10: "
-        android:textColor="#000000"
-        android:textSize="20dp"
+        android:text="Select Donation Amount"
+        app:layout_constraintBottom_toTopOf="@+id/fan_payment_spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/send_payments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:autoLink="web"
-        android:text="@string/revolut"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
-        android:text="Donate €2: "
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.187"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/send_payments2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
-        android:autoLink="web"
-        android:text="2 Euro"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="625dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textColor="@color/black"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

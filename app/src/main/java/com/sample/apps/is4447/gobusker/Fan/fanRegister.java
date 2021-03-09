@@ -14,9 +14,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.sample.apps.is4447.gobusker.Busker.buskerRegister;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
+
+import java.util.HashMap;
 
 public class fanRegister extends AppCompatActivity {
     //connection to firebase
@@ -24,6 +29,8 @@ public class fanRegister extends AppCompatActivity {
     //declaring variables
     Button register;
     EditText email, password, firstname, secondname, verifypassword;
+
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,35 +78,56 @@ public class fanRegister extends AppCompatActivity {
                 } else if (passwordreg.length() < 6) {
                     password.setError("Password must be longer than 6 characters");
                     password.requestFocus();
-                }else try{
-                //connects to firebase
-                //links busker class with new email+password in firebase
-                mAuth.createUserWithEmailAndPassword(emailreg, passwordreg)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Fan fan = new Fan(firstnamereg, secondnamereg, emailreg);
-                                    FirebaseDatabase.getInstance().getReference("Fans")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .setValue(fan).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            //if success or failure, inform user
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(fanRegister.this, "Fan has been registered successfully", Toast.LENGTH_LONG).show();
-                                            } else {
-                                                Toast.makeText(fanRegister.this, "Registration has failed", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
+                } else {
+                    register(firstnamereg, secondnamereg, emailreg, passwordreg);
+                }
+            }
+    });
+}
+
+    private void register(String firstname, String username, String email, String password){
+        //connects to firebase
+        //links busker class with new email+password in firebase
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            String userId = firebaseUser.getUid();
+
+                            //https://www.youtube.com/watch?v=WOmBT_N1mKY&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=2&ab_channel=KODDev
+                            //I went back and added hashmap functionality using this video
+
+                            reference = FirebaseDatabase.getInstance().getReference().child("Fans").child(userId);
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("id", userId);
+                            hashMap.put("username", username.toLowerCase());
+                            hashMap.put("firstname", firstname);
+                            hashMap.put("email", email);
+
+
+                     /*   Busker busker = new Busker(firstnamereg, bioreg, emailreg, userId);
+                        FirebaseDatabase.getInstance().getReference("Buskers")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+
+                                .setValue(busker).addOnCompleteListener(new OnCompleteListener<Void>()
+                       */
+
+                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(fanRegister.this, "Busker has been registered successfully", Toast.LENGTH_LONG).show();
+
+
+                                    }
                                 }
-                            }
-                        });
-            }catch(Exception e){
-                Toast.makeText(fanRegister.this, "Registration has failed", Toast.LENGTH_SHORT).show();
-            }
-            }
-        });
+                            });
+                        } else {
+                            Toast.makeText(fanRegister.this, "Registration has failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
