@@ -29,23 +29,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sample.apps.is4447.gobusker.Adapter.MyPhotoAdapter;
-import com.sample.apps.is4447.gobusker.Busker.BuskerComments;
 import com.sample.apps.is4447.gobusker.Busker.BuskerEditProfile;
 import com.sample.apps.is4447.gobusker.Busker.BuskerPayment;
-import com.sample.apps.is4447.gobusker.Busker.buskerForgot;
-import com.sample.apps.is4447.gobusker.Busker.buskerLogin;
+import com.sample.apps.is4447.gobusker.Fan.FanPayment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.Model.Post;
 import com.sample.apps.is4447.gobusker.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class BuskerProfileFragment extends Fragment {
+public class BuskerOtherProfileFragment extends Fragment {
 
     ImageView options;
     CircleImageView image_profiled;
@@ -71,11 +68,13 @@ public class BuskerProfileFragment extends Fragment {
 
     private String image;
 
+    Button send_payment;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_busker_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_busker_other_profile, container, false);
 
         firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -93,6 +92,7 @@ public class BuskerProfileFragment extends Fragment {
         edit_profile = view.findViewById(R.id.edit_profile);
         my_photos = view.findViewById(R.id.my_photos);
         saved_photos = view.findViewById(R.id.saved_photos);
+        send_payment = view.findViewById(R.id.send_Payment);
 
         add_payment = view.findViewById(R.id.add_payment);
 
@@ -124,13 +124,21 @@ public class BuskerProfileFragment extends Fragment {
         getNrPosts();
         myPhotos();
         mysaves();
+        checkFollow();
 
-        if(profileid.equals(firebaseBusker.getUid())){
-            edit_profile.setText("Edit Profile");
-        } else {
-            checkFollow();
-            saved_photos.setVisibility(View.GONE);
-        }
+//        if(profileid.equals(firebaseBusker.getUid())){
+//            edit_profile.setText("Edit Profile");
+//        } else {
+//            checkFollow();
+//            saved_photos.setVisibility(View.GONE);
+//        }
+
+        send_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), FanPayment.class));
+            }
+        });
 
 
 
@@ -141,14 +149,12 @@ public class BuskerProfileFragment extends Fragment {
                 String btn = edit_profile.getText().toString();
 
                 if(btn.equals("Edit Profile")){
-                   startActivity(new Intent(getContext(), BuskerEditProfile.class));
+                    startActivity(new Intent(getContext(), BuskerEditProfile.class));
                 } else if (btn.equals("follow")){
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
                             .child("following").child(profileid).setValue(true);
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
                             .child("followers").child(firebaseBusker.getUid()).setValue(true);
-
-                    addNotifications();
 
                 } else if (btn.equals("following")){
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
@@ -159,42 +165,12 @@ public class BuskerProfileFragment extends Fragment {
 
             }
         });
-        my_photos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerView.setVisibility(View.VISIBLE);
-                recyclerView_saves.setVisibility(View.GONE);
-            }
-        });
-        saved_photos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerView.setVisibility(View.GONE);
-                recyclerView_saves.setVisibility(View.VISIBLE);
-            }
-        });
 
-        add_payment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), BuskerPayment.class));
-            }
-        });
+
 
 
 
         return view;
-    }
-    private void addNotifications(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(profileid);
-
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("userid", firebaseBusker.getUid());
-        hashMap.put("text", " started following you");
-        hashMap.put("postid", "");
-        hashMap.put("ispost", false);
-
-        reference.push().setValue(hashMap);
     }
 
     private void buskerInfo() {
@@ -284,7 +260,7 @@ public class BuskerProfileFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                following.setText(""+dataSnapshot.getChildrenCount());
+//                following.setText(""+dataSnapshot.getChildrenCount());
             }
 
             @Override
@@ -343,47 +319,48 @@ public class BuskerProfileFragment extends Fragment {
     //https://www.youtube.com/watch?v=uloDNWsM__g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=15&ab_channel=KODDev
     private void mysaves(){
         mySaves = new ArrayList<>();
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Saves")
-                    .child(firebaseBusker.getUid());
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        mySaves.add(snapshot.getKey());
-                    }
-
-                    readSaves();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Saves")
+                .child(firebaseBusker.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    mySaves.add(snapshot.getKey());
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                readSaves();
+            }
 
-                }
-            });
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        private void readSaves(){
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    postList_saves.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Post post = snapshot.getValue(Post.class);
+            }
+        });
+    }
 
-                        for (String id : mySaves){
-                            if (post.getPostid().equals(id)){
-                                postList_saves.add(post);
-                            }
+    private void readSaves(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList_saves.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+
+                    for (String id : mySaves){
+                        if (post.getPostid().equals(id)){
+                            postList_saves.add(post);
                         }
                     }
-                    myPhotoAdapter.notifyDataSetChanged();
                 }
+                myPhotoAdapter.notifyDataSetChanged();
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+            }
+        });
     }
+
+}

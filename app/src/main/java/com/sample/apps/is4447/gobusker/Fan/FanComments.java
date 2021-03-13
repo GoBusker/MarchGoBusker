@@ -113,7 +113,20 @@ public class FanComments extends AppCompatActivity {
         hashMap.put("publisher", firebaseBusker.getUid());
 
         reference.push().setValue(hashMap);
+        addNotifications();
         addcomment.setText("");
+    }
+
+    private void addNotifications(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(publisherid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userid", firebaseBusker.getUid());
+        hashMap.put("text", " commented " + addcomment.getText());
+        hashMap.put("postid", postid);
+        hashMap.put("ispost", true);
+
+        reference.push().setValue(hashMap);
     }
     //I used this video for reference for sending comments onto posts
 //    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev

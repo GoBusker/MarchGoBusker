@@ -22,6 +22,7 @@ import com.sample.apps.is4447.gobusker.FanFragments.FanProfileFragment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -92,6 +93,7 @@ public class FanAdapter extends RecyclerView.Adapter<FanAdapter.ViewHolder>{
                             .child("following").child(busker.getId()).setValue(true);
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(busker.getId())
                             .child("followers").child(firebaseBusker.getUid()).setValue(true);
+                    addNotifications(busker.getId());
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseBusker.getUid())
                             .child("following").child(busker.getId()).removeValue();
@@ -100,6 +102,17 @@ public class FanAdapter extends RecyclerView.Adapter<FanAdapter.ViewHolder>{
                 }
             }
         });
+    }
+    private void addNotifications(String userid){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userid", firebaseBusker.getUid());
+        hashMap.put("text", " started following you");
+        hashMap.put("postid", "");
+        hashMap.put("ispost", true);
+
+        reference.push().setValue(hashMap);
     }
 
     @Override

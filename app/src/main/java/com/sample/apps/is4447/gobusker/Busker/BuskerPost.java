@@ -17,15 +17,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.sample.apps.is4447.gobusker.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +51,10 @@ public class BuskerPost extends AppCompatActivity {
     TextView post;
     EditText description;
 
+    private FirebaseUser firebaseBusker;
+
+    List<String> idList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +66,11 @@ public class BuskerPost extends AppCompatActivity {
         description = findViewById(R.id.description);
 
         storageReference = FirebaseStorage.getInstance().getReference("post");
+
+        firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
+
+        idList = new ArrayList<>();
+
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +138,7 @@ public class BuskerPost extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         startActivity(new Intent(BuskerPost.this, BuskerFeed.class));
+                        addNotifications(FirebaseAuth.getInstance().getCurrentUser().getUid(), postId);
                         finish();
                     } else {
                         Toast.makeText(BuskerPost.this, "Failed", Toast.LENGTH_SHORT).show();
@@ -148,10 +164,43 @@ public class BuskerPost extends AppCompatActivity {
             imageUri = result.getUri();
 
             image_added.setImageURI(imageUri);
+
+
         }else {
             Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(BuskerPost.this, BuskerFeed.class));
             finish();
         }
     }
+
+    private void addNotifications(String userid, String postid){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Follow")
+                .child(firebaseBusker.getUid()).child("followers");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    //String uID = (String) snapshot.child("id").getValue();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(snapshot.getKey());
+
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("userid", firebaseBusker.getUid());
+                    hashMap.put("text", " just posted an event");
+                    hashMap.put("postid", postid);
+                    hashMap.put("ispost", true);
+
+                    reference.push().setValue(hashMap);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 }

@@ -63,28 +63,28 @@ public class FanPayment extends AppCompatActivity  implements AdapterView.OnItem
 
     }
 
-    private void buskerInfo() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(profileid);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Busker busker = dataSnapshot.getValue(Busker.class);
-                send_payment.setText(busker.getPayment10());
-                send_payment.setMovementMethod(LinkMovementMethod.getInstance());
-                send_payment2.setText(busker.getPayment2());
-                send_payment2.setMovementMethod(LinkMovementMethod.getInstance());
-                send_payment5.setText(busker.getPayment5());
-                send_payment5.setMovementMethod(LinkMovementMethod.getInstance());
-                send_payment20.setText(busker.getPayment20());
-                send_payment20.setMovementMethod(LinkMovementMethod.getInstance());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    private void buskerInfo() {
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(profileid);
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Busker busker = dataSnapshot.getValue(Busker.class);
+//                send_payment.setText(busker.getPayment10());
+//                send_payment.setMovementMethod(LinkMovementMethod.getInstance());
+//                send_payment2.setText(busker.getPayment2());
+//                send_payment2.setMovementMethod(LinkMovementMethod.getInstance());
+//                send_payment5.setText(busker.getPayment5());
+//                send_payment5.setMovementMethod(LinkMovementMethod.getInstance());
+//                send_payment20.setText(busker.getPayment20());
+//                send_payment20.setMovementMethod(LinkMovementMethod.getInstance());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

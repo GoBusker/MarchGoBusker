@@ -7,4 +7,34 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+
+    <!-- Screens background color-->
+    <color name="bg_screen4">#007521</color>
+    <color name="bg_screen3">#5DB55D</color>
+    <color name="bg_screen2">#40E646</color>
+    <color name="bg_screen1">#8EC347</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#00BA12</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#85FF1C</color>
+
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen1</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/black</item>
+        <item>@color/black</item>
+        <item>@color/black</item>
+        <item>@color/black</item>
+    </array>
 </resources>

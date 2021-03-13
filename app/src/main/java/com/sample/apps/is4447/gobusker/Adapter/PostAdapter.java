@@ -18,12 +18,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sample.apps.is4447.gobusker.Busker.BuskerComments;
+import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerOtherProfileFragment;
 import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerPostDetailsFragment;
 import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerProfileFragment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.Model.Post;
 import com.sample.apps.is4447.gobusker.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -84,7 +86,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                editor.apply();
 
                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                       new BuskerProfileFragment()).commit();
+                       new BuskerOtherProfileFragment()).commit();
            }
        });
 
@@ -96,7 +98,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 editor.apply();
 
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BuskerProfileFragment()).commit();
+                        new BuskerOtherProfileFragment()).commit();
             }
         });
         viewHolder.publisher.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +151,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 if(viewHolder.like.getTag().equals("like")){
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid())
                             .child(firebaseBusker.getUid()).setValue(true);
+                    addNotifications(post.getPublisher(), post.getPostid());
                 } else{
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid())
                             .child(firebaseBusker.getUid()).removeValue();
@@ -249,6 +252,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
     }
+
+    private void addNotifications(String userid, String postid){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userid", firebaseBusker.getUid());
+        hashMap.put("text", " will be at your busk");
+        hashMap.put("postid", postid);
+        hashMap.put("ispost", true);
+
+        reference.push().setValue(hashMap);
+    }
+
+
     //  https://www.youtube.com/watch?v=B1NiPvfMbDM&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=8&ab_channel=KODDev
     //I used this video for reference to adding likes to posts
     private void nrLikes(final TextView likes, String postid){

@@ -118,7 +118,7 @@ public class fanRegister extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(fanRegister.this, "Busker has been registered successfully", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(fanRegister.this, "Fan has been registered successfully", Toast.LENGTH_LONG).show();
 
 
                                     }
