@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -62,7 +63,6 @@ EditText search_bar;
         search_bar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -79,7 +79,7 @@ EditText search_bar;
         return view;
     }
     private void searchBuskers(String s){
-        Query query = FirebaseDatabase.getInstance().getReference("Buskers").orderByChild("username")
+        Query query = FirebaseDatabase.getInstance().getReference("Buskers").orderByChild("firstname")
                 .startAt(s)
                 .endAt(s+"\uf0ff");
 
