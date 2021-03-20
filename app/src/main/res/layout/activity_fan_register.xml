@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fan.fanRegister">
+    tools:context=".Fan.fanRegister"
+    android:background="@color/white">
 
     <!--      "https://www.youtube.com/results?search_query=%231+login+and+registration+android+app+tutorial+using+firebase+authentication+-+create+user"
   Code acquired for register design page -->
@@ -16,6 +17,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:text="@string/fan"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCrotchet5" />
 
