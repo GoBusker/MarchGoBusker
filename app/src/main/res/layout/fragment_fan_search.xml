@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FanFragments.FanSearchFragment">
+    tools:context=".FanFragments.FanSearchFragment"
+    android:background="@color/white">
     <!-- I referenced this Youtube video for busker search and follow
       https://www.youtube.com/watch?v=59ibixMg4ck&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
 
@@ -17,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
-            android:background="?android:attr/windowBackground"
+            android:background="@color/white"
             >
 
             <ImageView
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/search_bar"
                 android:hint="Search.."
+                android:textColorHint="@color/black"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 />

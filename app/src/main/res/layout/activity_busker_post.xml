@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Busker.BuskerPost">
+    tools:context=".Busker.BuskerPost"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/white"
         android:id="@+id/bar">
        <!--
         I used this Youtube video to reference Post creation
@@ -19,7 +20,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/white"
         android:id="@+id/toolbar">
 
         <RelativeLayout
@@ -51,30 +52,105 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-<androidx.appcompat.widget.LinearLayoutCompat
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerInside"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"
-        android:id="@+id/image_added"/>
-
-    <EditText
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:fillViewport="false"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/image_added"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ic_launcher" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edit_text"
+                android:hint="Description"
+                android:maxLines="5"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <EditText
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edit_text"
+                android:hint="Location"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnDate"
         android:layout_marginTop="15dp"
-        android:hint="Description"
-        android:maxLines="5"
-        android:id="@+id/description"/>
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_border"
+        android:text="Date"
+        />
+    <Button
+        android:id="@+id/btnTime"
+        android:layout_marginTop="15dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_border"
+        android:text="Time"
+        />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+            <RelativeLayout
+                android:id="@+id/timeframe"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOffWhite">
 
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Theme.AppCompat.DayNight"
+                    android:visibility="visible"/>
+
+<TimePicker
+    android:id="@+id/timepicker"
+    android:layout_marginTop="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.AppCompat.DayNight"
+    android:visibility="invisible"
+    />
+
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </ScrollView>
 
 
 </LinearLayout>

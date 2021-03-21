@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +23,7 @@ import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerOtherProfileFragmen
 import com.sample.apps.is4447.gobusker.BuskerFragments.BuskerProfileFragment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
+import com.sample.apps.is4447.gobusker.SendNotification;
 
 import java.util.HashMap;
 import java.util.List;
@@ -116,7 +118,7 @@ viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
 
     }
 
-    private void addNotifications(String userid){
+    private void addNotifications(String userid) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
 
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -126,8 +128,31 @@ viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
         hashMap.put("ispost", true);
 
         reference.push().setValue(hashMap);
+
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//
+//                    String key = FirebaseDatabase.getInstance().getReference().child("Notification").push().getKey();
+//
+//
+//
+//                    SendNotification sendNotification = new SendNotification();
+//                    sendNotification.SendNotification("check it out!", "new Connection!", dataSnapshot.getKey());
+//            }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
     }
-    // <!-- I referenced this Youtube video for busker search and follow
+
+
+
+            // <!-- I referenced this Youtube video for busker search and follow
     //    https://www.youtube.com/watch?v=59ibixMg4ck&lifnoptst=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=4&ab_channel=KODDev -->
     @Override
     public int getItemCount() {

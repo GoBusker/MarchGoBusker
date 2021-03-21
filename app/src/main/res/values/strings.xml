@@ -32,8 +32,7 @@
     </string-array>
 
 
-
-<!-- Intro slider -->
+    <!-- Intro slider -->
     <string name="title_activity_welcome">Home Screen</string>
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>

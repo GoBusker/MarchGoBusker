@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fan.fanLogin">
+    tools:context=".Fan.fanLogin"
+    android:background="@color/white">
 
     <!-- "https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
  Design Code was based off of this Login Youtube Tutorial -->
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/gobusker"
+        android:textColor="@color/black"
         android:textSize="55sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@+id/ivCrotchet2"
@@ -38,6 +40,9 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:background="@drawable/edit_text"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -52,6 +57,9 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/password"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:background="@drawable/edit_text"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -64,6 +72,7 @@
         android:layout_height="75dp"
         android:layout_marginTop="44dp"
         android:text="@string/login"
+        android:background="@drawable/background_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +95,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="40dp"
         android:text="@string/forgot_password"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnfanLogin" />
 
@@ -97,7 +106,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="@string/register"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/tvFanForgot"
         app:layout_constraintTop_toBottomOf="@+id/btnfanLogin" />
 

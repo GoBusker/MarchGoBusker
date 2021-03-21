@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Busker.buskerLogin">
+    tools:context=".Busker.buskerLogin"
+    android:background="@color/white">
 
 
 <!-- "https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
@@ -29,7 +30,8 @@
         android:textSize="55sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@+id/ivCrotchet3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/etbuskerEmail"
@@ -38,9 +40,11 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="216dp"
         android:layout_marginEnd="32dp"
-        android:autofillHints=""
+android:background="@drawable/edit_text"
         android:ems="10"
         android:hint="@string/email"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -55,6 +59,7 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="32dp"
         android:text="@string/login"
+        android:background="@drawable/background_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +75,10 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/password"
+        android:textColorHint="@color/black"
+        android:background="@drawable/edit_text"
         android:inputType="textPassword"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +91,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="104dp"
         android:text="@string/busker"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeading3" />
 
@@ -93,8 +102,9 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="52dp"
         android:text="@string/forgot_password"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/btnbuskerLogin" />
 
     <TextView
@@ -104,7 +114,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="52dp"
         android:text="@string/register"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvBuskerForgot"

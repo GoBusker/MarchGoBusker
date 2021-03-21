@@ -72,6 +72,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             viewHolder.description.setVisibility(View.VISIBLE);
             viewHolder.description.setText(post.getDescription());
         }
+
+        if (post.getLocation().equals("")){
+            viewHolder.location.setVisibility(View.GONE);
+        } else {
+            viewHolder.location.setVisibility(View.VISIBLE);
+            viewHolder.location.setText(post.getLocation());
+        }
+        if (post.getDate().equals("")){
+            viewHolder.date.setVisibility(View.GONE);
+        } else {
+            viewHolder.date.setVisibility(View.VISIBLE);
+            viewHolder.date.setText(post.getDate());
+        }
+
+        if (post.getTime().equals("")){
+            viewHolder.time.setVisibility(View.GONE);
+        } else {
+            viewHolder.time.setVisibility(View.VISIBLE);
+            viewHolder.time.setText(post.getTime());
+        }
         publisherInfo(viewHolder.image_profile, viewHolder.username, viewHolder.publisher,post.getPublisher());
        isLikes(post.getPostid(), viewHolder.like);
        nrLikes(viewHolder.likes, post.getPostid());
@@ -190,7 +210,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView image_profile, post_image, like, comment, save;
-        public TextView username, likes, publisher, description, comments;
+        public TextView username, likes, publisher, description, comments, location, date, time;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -205,6 +225,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             likes = itemView.findViewById(R.id.likes);
             publisher = itemView.findViewById(R.id.publisher);
             description = itemView.findViewById(R.id.description);
+            location = itemView.findViewById(R.id.location);
+            date = itemView.findViewById(R.id.date);
+            time = itemView.findViewById(R.id.time);
         }
 
     }

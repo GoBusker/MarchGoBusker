@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuskerFragments.BuskerNotificationFragment">
+    tools:context=".BuskerFragments.BuskerNotificationFragment"
+    android:background="@color/white">
 
 <com.google.android.material.appbar.AppBarLayout
     android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
-        android:background="?android:attr/windowBackground">
+        android:background="@color/white">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

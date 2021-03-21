@@ -4,37 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fan.FanPayment">
+    tools:context=".Fan.FanPayment"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_container_fan"
+        tools:layout_conversion_absoluteHeight="675dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="411dp" />
+
+    <!--    <Spinner-->
+<!--        android:id="@+id/fan_payment_spinner"-->
+<!--        style="@style/Widget.AppCompat.Spinner.DropDown"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="160dp"-->
+<!--        android:layout_marginTop="284dp"-->
+<!--        android:fadeScrollbars="true"-->
+<!--        android:foregroundTint="#FFFFFF"-->
+<!--        android:scrollbarSize="20dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.504"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/send_payments"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginBottom="116dp"
         android:autoLink="web"
         android:text="Donation link"
         android:textColor="#007521"
         android:textColorLink="#007521"
         android:textSize="20dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fan_payment_spinner" />
+        app:layout_constraintHorizontal_bias="0.387"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/fan_payment_spinner"
-        style="@style/Widget.AppCompat.Spinner.DropDown"
-        android:layout_width="300dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="284dp"
-        android:fadeScrollbars="true"
-        android:foregroundTint="#FFFFFF"
-        android:scrollbarSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="140dp"
+        android:orientation="vertical"
+        android:theme="@style/Theme.AppCompat.DayNight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <RadioButton
+            android:id="@+id/two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="5"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/twenty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="20"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/ten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="10"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+    </RadioGroup>
 
     <ImageView
         android:id="@+id/imageView"
@@ -48,16 +105,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <TextView
         android:id="@+id/textView"
-        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:text="Select Donation Amount"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/fan_payment_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <!--  I referenced this Youtube video for the bottom navigation
+      https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev -->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

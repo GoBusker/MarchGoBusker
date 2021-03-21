@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -36,7 +38,9 @@ public class BuskerPayment extends AppCompatActivity  implements AdapterView.OnI
 
     MaterialEditText payment10;
 
+    private RadioGroup radioGroup;
 
+    RadioButton radiobutton;
 
 
 
@@ -46,16 +50,21 @@ public class BuskerPayment extends AppCompatActivity  implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busker_payment);
 
-        Spinner spinner = findViewById(R.id.busker_payment_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.fandonate, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+//        Spinner spinner = findViewById(R.id.busker_payment_spinner);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.fandonate, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(this);
 
 
         payment10 = findViewById(R.id.addPayment);
         btnPayment = findViewById(R.id.btnPayment);
+
+
+        radioGroup = findViewById(R.id.radio);
+
+        RadioButton checkedRadioButton = (RadioButton)radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
 
 
 
@@ -78,28 +87,64 @@ public class BuskerPayment extends AppCompatActivity  implements AdapterView.OnI
         btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if  (spinner.getSelectedItemPosition() == 0) {
+                int radioid = radioGroup.getCheckedRadioButtonId();
+                radiobutton = findViewById(radioid);
+                if (radioid == -1) {
                     Toast.makeText(getApplicationContext(), "No donation set", Toast.LENGTH_SHORT).show();
-                } else if (spinner.getSelectedItemPosition() == 1) {
-                    Toast.makeText(getApplicationContext(), "2 euro donation set", Toast.LENGTH_SHORT).show();
-                    updateProfile2(payment10.getText().toString());
-                } else if (spinner.getSelectedItemPosition() == 2){
-                    Toast.makeText(getApplicationContext(), "5 euro donation set", Toast.LENGTH_SHORT).show();
-                    updateProfile5(payment10.getText().toString());
-                } else if (spinner.getSelectedItemPosition() == 3){
-                    Toast.makeText(getApplicationContext(), "10 euro donation set", Toast.LENGTH_SHORT).show();
-                    updateProfile(payment10.getText().toString());
-                } else if (spinner.getSelectedItemPosition() == 4){
-                    Toast.makeText(getApplicationContext(), "20 euro donation set", Toast.LENGTH_SHORT).show();
-                    updateProfile20(payment10.getText().toString());
+                } else {
+                    findradiobutton(radioid);
+                }
+            }
+
+
+        });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.two:
+                        twoInfo();
+                        break;
+                    case R.id.five:
+                        fiveInfo();
+                        break;
+                    case R.id.ten:
+                        tenInfo();
+                        break;
+                    case R.id.twenty:
+                        twentyInfo();
+                        break;
                 }
             }
         });
-
-
-
-
     }
+
+
+
+    private void findradiobutton(int radioid) {
+
+            switch (radioid){
+                case R.id.two:
+                    Toast.makeText(getApplicationContext(), "2 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile2(payment10.getText().toString());
+                    break;
+                case R.id.five:
+                    Toast.makeText(getApplicationContext(), "5 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile5(payment10.getText().toString());
+                    break;
+                case R.id.ten:
+                    Toast.makeText(getApplicationContext(), "10 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile(payment10.getText().toString());
+                    break;
+                case R.id.twenty:
+                    Toast.makeText(getApplicationContext(), "20 euro donation set", Toast.LENGTH_SHORT).show();
+                    updateProfile20(payment10.getText().toString());
+                    break;
+            }
+        }
+
+
 
     private void updateProfile(String payment10) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());

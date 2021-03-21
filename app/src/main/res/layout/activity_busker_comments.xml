@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Busker.BuskerComments">
+    tools:context=".Busker.BuskerComments"
+    android:background="@color/white">
 
     <!-- I used this video for reference for sending comments onto posts
     https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev -->
@@ -13,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,7 +23,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/recycler_view"
         android:layout_below="@id/toolbar"
-        android:layout_above="@id/bottom"/>
+        android:layout_above="@id/bottom"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,16 +45,19 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/image_profile"
             android:hint="Add a comment.."
+            android:textColorHint="@color/black"
             android:id="@+id/add_comment"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:layout_toLeftOf="@id/post"
+            android:textColor="@color/black"
             />
 
         <TextView
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:id="@+id/post"
             android:text="POST"

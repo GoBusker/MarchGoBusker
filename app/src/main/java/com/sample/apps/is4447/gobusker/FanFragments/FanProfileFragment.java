@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,6 +68,8 @@ MyPhotoAdapter myPhotoAdapter;
 
     private String image;
 
+    Fragment selectedFragment = null;
+
 
 
     @Override
@@ -76,6 +79,8 @@ MyPhotoAdapter myPhotoAdapter;
         View view = inflater.inflate(R.layout.fragment_fan_profile, container, false);
 
         firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
@@ -170,6 +175,10 @@ MyPhotoAdapter myPhotoAdapter;
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), FanPayment.class));
+//                Fragment someFragment = new FanPaymentFragment();
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_container, someFragment  ); // give your fragment container id in first parameter
+//                transaction.commit();
             }
         });
 

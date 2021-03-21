@@ -48,7 +48,7 @@ public class BuskerEditProfile extends AppCompatActivity {
     ImageView close;
      CircleImageView image_profile;
     TextView save, tv_change;
-    MaterialEditText fullname, username, bio;
+    MaterialEditText firstname, username, bio;
 
     private String image;
 
@@ -67,7 +67,7 @@ public class BuskerEditProfile extends AppCompatActivity {
         image_profile = findViewById(R.id.image_profile);
         save = findViewById(R.id.save);
         tv_change = findViewById(R.id.tv_change);
-        fullname = findViewById(R.id.fullname);
+        firstname = findViewById(R.id.firstname);
         username = findViewById(R.id.username);
         bio = findViewById(R.id.bio);
 
@@ -79,7 +79,7 @@ public class BuskerEditProfile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Busker busker = dataSnapshot.getValue(Busker.class);
-                fullname.setText(busker.getFirstname());
+                firstname.setText(busker.getFirstname());
                 username.setText(busker.getUsername());
                 bio.setText(busker.getBio());
                 Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
@@ -117,7 +117,7 @@ public class BuskerEditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Changes made!", Toast.LENGTH_SHORT).show();
-                updateProfile(fullname.getText().toString(),
+                updateProfile(firstname.getText().toString(),
                         username.getText().toString(),
                         bio.getText().toString());
 
@@ -125,13 +125,14 @@ public class BuskerEditProfile extends AppCompatActivity {
         });
     }
 
-    private void updateProfile(String fullname, String username, String bio) {
+    private void updateProfile(String firstname, String username, String bio) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("fullname", fullname);
+        hashMap.put("firstname", firstname);
         hashMap.put("username", username);
         hashMap.put("bio", bio);
+
 
         reference.updateChildren(hashMap);
     }

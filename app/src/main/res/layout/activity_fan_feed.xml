@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fan.FanFeed"
-    android:id="@+id/relativeLayout">
+    android:id="@+id/relativeLayout"
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -31,12 +32,13 @@
             android:id="@+id/fan_bottom_navigation"
             app:itemIconTint="@color/cardview_dark_background"
             app:labelVisibilityMode="unlabeled"
-            android:background="?android:attr/windowBackground"
+            android:background="@color/white"
             app:menu="@menu/fan_bottom_navigation"
             tools:layout_conversion_absoluteHeight="56dp"
             tools:layout_editor_absoluteY="675dp"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_conversion_absoluteWidth="411dp" />
+            tools:layout_conversion_absoluteWidth="411dp"
+            />
 
 
 

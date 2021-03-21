@@ -40,12 +40,44 @@ public class Post {
     private String postimage;
     private String description;
     private String publisher;
+    private String date;
+    private String time;
 
-    public Post(String postid, String postimage, String description, String publisher) {
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    private String location;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Post(String postid, String postimage, String description, String publisher, String location, String date, String time) {
         this.postid = postid;
         this.postimage = postimage;
         this.description = description;
         this.publisher = publisher;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+
     }
 
     public Post() {

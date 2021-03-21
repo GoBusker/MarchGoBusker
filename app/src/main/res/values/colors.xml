@@ -37,4 +37,6 @@
         <item>@color/black</item>
         <item>@color/black</item>
     </array>
+
+    <color name="colorOffWhite">#80ffffff</color>
 </resources>

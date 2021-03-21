@@ -1,25 +1,23 @@
-package com.sample.apps.is4447.gobusker.Fan;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+package com.sample.apps.is4447.gobusker.FanFragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,14 +26,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.sample.apps.is4447.gobusker.FanFragments.FanHomeFragment;
-import com.sample.apps.is4447.gobusker.FanFragments.FanNotificationFragment;
-import com.sample.apps.is4447.gobusker.FanFragments.FanOwnProfileFragment;
-import com.sample.apps.is4447.gobusker.FanFragments.FanSearchFragment;
 import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
 
-public class FanPayment extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
+public class FanPaymentFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+
 
     FirebaseUser firebaseBusker;
     String profileid;
@@ -49,61 +44,71 @@ public class FanPayment extends AppCompatActivity  implements AdapterView.OnItem
 
     RadioButton radiobutton;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fan_payment);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_fan_payment,container, false);
 
         firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
 
-        send_payment = findViewById(R.id.send_payments);
+        send_payment = view.findViewById(R.id.send_payments);
         send_payment.setMovementMethod(LinkMovementMethod.getInstance());
 
-        radioGroup = findViewById(R.id.radio);
 
 
-        SharedPreferences prefs = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+
+        SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
         //buskerInfo();
         //tenInfo();
 
-//
-//        Spinner spinner = findViewById(R.id.fan_payment_spinner);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+
+//        Spinner spinner = view.findViewById(R.id.fan_payment_spinner);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
 //                R.array.fandonate, android.R.layout.simple_spinner_item);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spinner.setAdapter(adapter);
 //        spinner.setOnItemSelectedListener(this);
 
+        bottomNavigationView = view.findViewById(R.id.payment_fan_bottom_navigation);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i){
-                    case R.id.two:
-                        twoInfo();
-                        break;
-                    case R.id.five:
-                        fiveInfo();
-                        break;
-                    case R.id.ten:
-                        tenInfo();
-                        break;
-                    case R.id.twenty:
-                        twentyInfo();
-                        break;
-                }
-            }
-        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
+                 getFragmentManager().beginTransaction().replace(R.id.fragment_container_fan,
+                new FanPaymentFragment()).commit();
 
+        return view;
     }
-
     // I referenced this Youtube video for the bottom navigation
 //https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    switch (menuItem.getItemId()) {
+                        case R.id.nav_home:
+                            selectedFragment = new FanHomeFragment();
+                            break;
+                        case R.id.nav_search_fan:
 
+                            selectedFragment = new FanSearchFragment();
+                            break;
+                        case R.id.nav_favourite:
+                            selectedFragment = new FanNotificationFragment();
+                            break;
+                        case R.id.nav_profile:
+                            SharedPreferences.Editor editor = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                            editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            editor.apply();
+                            selectedFragment = new FanOwnProfileFragment();
+                            break;
+                    }
+
+                    return true;
+                }
+            };
 
 //    private void buskerInfo() {
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(profileid);
@@ -210,5 +215,4 @@ public class FanPayment extends AppCompatActivity  implements AdapterView.OnItem
             }
         });
     }
-
 }

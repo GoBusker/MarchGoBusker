@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fan.FanComments">
+    tools:context=".Fan.FanComments"
+    android:background="@color/white">
 
     <!-- I used this video for reference for sending comments onto posts
    https://www.youtube.com/watch?v=wemyU3GdS8A&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=9&ab_channel=KODDev -->
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/white"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -43,6 +44,7 @@
             android:layout_toRightOf="@+id/image_profile"
             android:hint="Add a comment.."
             android:id="@+id/add_comment"
+            android:textColor="@color/black"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -58,7 +60,7 @@
             android:layout_marginEnd="5dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:textColor="@color/design_default_color_primary"/>
+            android:textColor="@color/black"/>
 
 
 

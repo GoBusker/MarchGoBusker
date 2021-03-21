@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuskerFragments.BuskerProfileFragment">
+    tools:context=".BuskerFragments.BuskerProfileFragment"
+    android:background="@color/white">
 
     <!-- I used this Youtube video for reference for creating the buskers profile
     https://www.youtube.com/watch?v=AkKjEkWWJEc&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=11&ab_channel=KODDev -->
@@ -17,8 +18,9 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
-            android:id="@+id/toolbar">
+            android:background="@color/white"
+            android:id="@+id/toolbar"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -100,7 +102,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="posts"/>
+                                android:text="busks"
+                                android:textColor="@color/black"/>
                         </LinearLayout>
 
                          <LinearLayout
@@ -121,7 +124,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="followers"/>
+                                android:text="followers"
+                                android:textColor="@color/black"/>
 
 
                     </LinearLayout>
@@ -143,7 +147,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="following"/>
+                                android:text="following"
+                                android:textColor="@color/black"/>
 
 
                         </LinearLayout>
@@ -155,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:id="@+id/edit_profile"
-                        android:background="@color/black"/>
+                        android:background="@drawable/background_border"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -205,6 +210,7 @@
                     android:layout_weight="1"
                     android:id="@+id/my_photos"
                     android:src="@drawable/ic_apps"
+                    android:background="#AEAEAE"
 
                     />
 
@@ -214,18 +220,30 @@
                     android:layout_weight="1"
                     android:id="@+id/saved_photos"
                     android:src="@drawable/ic_save"
+                    android:background="#AEAEAE"
 
                     />
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/add_payment"
-                    android:src="@drawable/ic_money"
 
-                    />
 
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/donate_bar"
+
+            >
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/add_payment"
+                android:src="@drawable/ic_money"
+                android:background="@color/bg_screen4"
+
+                />
+        </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

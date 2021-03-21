@@ -7,9 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -29,7 +34,10 @@ import com.google.firebase.storage.StorageTask;
 import com.sample.apps.is4447.gobusker.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,11 +57,29 @@ public class BuskerPost extends AppCompatActivity {
 
     ImageView close, image_added;
     TextView post;
-    EditText description;
+    EditText description, location;
+
+    CalendarView calendar;
+
+    String timezone;
+
+    String calendarstring, timestring;
 
     private FirebaseUser firebaseBusker;
 
     List<String> idList;
+
+    Button date, time;
+
+    Button test;
+    RelativeLayout  timeframe;
+    TimePicker timepicker;
+    CalendarView calview;
+    RelativeLayout calendarframe;
+    Boolean cal = true;
+    Boolean tim = false;
+
+    TextView testing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +90,83 @@ public class BuskerPost extends AppCompatActivity {
         image_added = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
+
+        location = findViewById(R.id.location);
+
+        calendar = findViewById(R.id.calendarView);
+
+        date = findViewById(R.id.btnDate);
+        time = findViewById(R.id.btnTime);
+
+
+        timeframe = findViewById(R.id.timeframe);
+
+        timepicker = findViewById(R.id.timepicker);
+        timepicker.setIs24HourView(true);
+
+
+
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                calendarstring = year + "/" + month + "/" + dayOfMonth;
+            }
+        });
+
+        timepicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+                if (i >12){
+                    timezone = "PM";
+                    i-=12;
+                } else {
+                    timezone = "AM";
+                }
+                if (i1 < 10){
+                    timestring = i + ":0" +i1 + timezone;
+                } else {
+                    timestring = i + ":" + i1 + timezone;
+                }
+            }
+        });
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (cal == false) {
+                    calendar.setVisibility(View.VISIBLE);
+                    cal = true;
+                    timepicker.setVisibility(View.INVISIBLE);
+                    tim = false;
+                } else if (cal == true) {
+                    calendar.setVisibility(View.GONE);
+                    cal = false;
+                    timepicker.setVisibility(View.VISIBLE);
+                    tim = true;
+                }
+            }
+        });
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tim == false) {
+                    timepicker.setVisibility(View.VISIBLE);
+                    tim = true;
+                    calendar.setVisibility(View.GONE);
+                    cal = false;
+                } else if (tim == true) {
+                    timepicker.setVisibility(View.INVISIBLE);
+                    tim = false;
+                    calendar.setVisibility(View.VISIBLE);
+                    cal = true;
+                }
+            }
+        });
+
+
+
 
         storageReference = FirebaseStorage.getInstance().getReference("post");
 
@@ -83,7 +186,25 @@ public class BuskerPost extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage();
+                String des = description.getText().toString();
+                String loc = location.getText().toString();
+                long cale = calendar.getDate();
+                String timep = time.toString();
+                if (des.isEmpty()) {
+                   description.setError("Please enter busk location");
+                   description.requestFocus();
+                } else if (loc.isEmpty()) {
+                    location.setError("Please enter busk location");
+                    location.requestFocus();
+//                }  else if (cale.is()){
+//                    Toast.makeText(getApplicationContext(), "Please enter a date", Toast.LENGTH_SHORT).show();
+//                } else if (timep.isEmpty()){
+//                    Toast.makeText(getApplicationContext(), "Please enter a time", Toast.LENGTH_SHORT).show();
+//                }
+                }
+                else {
+                    uploadImage();
+                }
             }
         });
 
@@ -131,6 +252,12 @@ public class BuskerPost extends AppCompatActivity {
                         hashMap.put("postid", postId);
                         hashMap.put("postimage", myUri);
                         hashMap.put("description", description.getText().toString());
+
+                        hashMap.put("location", location.getText().toString());
+                        hashMap.put("date", calendarstring);
+
+                        hashMap.put("time", timestring);
+
                         hashMap.put("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                         reference.child(postId).setValue(hashMap);

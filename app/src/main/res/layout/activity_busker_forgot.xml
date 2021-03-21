@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Busker.buskerForgot">
+    tools:context=".Busker.buskerForgot"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tvHeading8"
@@ -15,7 +16,8 @@
         android:textSize="55sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@+id/ivCrotchet8"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
 
     <ImageView
         android:id="@+id/ivCrotchet8"
@@ -34,6 +36,8 @@
         android:layout_marginTop="152dp"
         android:ems="10"
         android:hint="@string/email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
@@ -45,6 +49,7 @@
         android:layout_width="387dp"
         android:layout_height="57dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/background_border"
         android:text="@string/reset_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
