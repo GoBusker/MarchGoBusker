@@ -59,6 +59,8 @@
                     android:textColor="@color/black"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"/>
+
+
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -112,10 +114,65 @@
             android:id="@+id/bio"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:hint="Bio"
+            android:hint="Tell your fans a little about yourself!"
+            android:textColor="@color/black"
+            app:met_floatingLabel="normal"
+            android:maxLines="5"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/facebook"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Facebook Link"
             android:textColor="@color/black"
             app:met_floatingLabel="normal" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/instagram"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Instagram Link"
+            android:textColor="@color/black"
+            app:met_floatingLabel="normal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
 
+            >
+
+        <CheckBox
+            android:id="@+id/musiciancheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.AppCompat.DayNight"
+            android:text="Music"/>
+            <CheckBox
+                android:id="@+id/rockcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AppCompat.DayNight"
+                android:text="Rock"/>
+            <CheckBox
+                android:id="@+id/jazzcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AppCompat.DayNight"
+                android:text="Jazz"/>
+            <CheckBox
+                android:id="@+id/professionalcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AppCompat.DayNight"
+                android:text="Professional"/>
+            <CheckBox
+                android:id="@+id/dancercheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AppCompat.DayNight"
+                android:text="Dancer"/>
+
+
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

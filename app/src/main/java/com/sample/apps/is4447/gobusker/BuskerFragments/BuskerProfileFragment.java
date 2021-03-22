@@ -49,8 +49,10 @@ public class BuskerProfileFragment extends Fragment {
 
     ImageView options;
     CircleImageView image_profiled;
-    TextView posts, followers, following, fullname, bio, username;
+    TextView posts, followers, following, fullname, bio, username, facebook, instagram;
     Button edit_profile;
+
+    TextView musician, dancer, rock, jazz, professional;
 
     private List<String> mySaves;
 
@@ -93,6 +95,15 @@ public class BuskerProfileFragment extends Fragment {
         edit_profile = view.findViewById(R.id.edit_profile);
         my_photos = view.findViewById(R.id.my_photos);
         saved_photos = view.findViewById(R.id.saved_photos);
+
+        facebook = view.findViewById(R.id.facebook);
+        instagram = view.findViewById(R.id.instagram);
+
+        musician = view.findViewById(R.id.musician);
+        rock = view.findViewById(R.id.rock);
+        jazz = view.findViewById(R.id.jazz);
+        dancer = view.findViewById(R.id.dancer);
+        professional = view.findViewById(R.id.professional);
 
         add_payment = view.findViewById(R.id.add_payment);
 
@@ -210,6 +221,34 @@ public class BuskerProfileFragment extends Fragment {
                 username.setText(busker.getUsername());
                 fullname.setText(busker.getFirstname());
                 bio.setText(busker.getBio());
+                facebook.setText(busker.getFacebook());
+                instagram.setText(busker.getInstagram());
+                if (busker.isMusician() == true){
+                    musician.setVisibility(View.VISIBLE);
+                } else if (busker.isMusician() == false){
+                    musician.setVisibility(View.GONE);
+                }
+                if (busker.isRock() == true){
+                    rock.setVisibility(View.VISIBLE);
+                } else if (busker.isRock() == false){
+                    rock.setVisibility(View.GONE);
+                }
+                if (busker.isJazz() == true){
+                    jazz.setVisibility(View.VISIBLE);
+                } else if (busker.isJazz() == false){
+                    jazz.setVisibility(View.GONE);
+                }
+                if (busker.isDancer() == true){
+                    dancer.setVisibility(View.VISIBLE);
+                } else if (busker.isDancer() == false){
+                    dancer.setVisibility(View.GONE);
+                }
+                if (busker.isProfessional() == true){
+                    professional.setVisibility(View.VISIBLE);
+                } else if (busker.isProfessional() == false){
+                    professional.setVisibility(View.GONE);
+                }
+
 
             }
 

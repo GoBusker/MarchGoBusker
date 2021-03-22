@@ -113,6 +113,13 @@ private void register(String username, String firstname, String email, String pa
                         hashMap.put("payment2", "");
                         hashMap.put("payment5", "");
                         hashMap.put("payment20", "");
+                        hashMap.put("musician", false);
+                        hashMap.put("rock", false);
+                        hashMap.put("jazz", false);
+                        hashMap.put("professional", false);
+                        hashMap.put("dancer", false);
+                        hashMap.put("facebook", "");
+                        hashMap.put("instagram", "");
                      /*   Busker busker = new Busker(firstnamereg, bioreg, emailreg, userId);
                         FirebaseDatabase.getInstance().getReference("Buskers")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

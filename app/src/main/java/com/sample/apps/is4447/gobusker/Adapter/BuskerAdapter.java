@@ -79,6 +79,8 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
 
         if(busker.getId().equals(firebaseBusker.getUid())){
             viewHolder.btn_follow.setVisibility(View.GONE);
+//            viewHolder.username.setVisibility(View.GONE);
+//            viewHolder.fullname.setVisibility(View.GONE);
         }
 
 

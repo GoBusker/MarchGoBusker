@@ -6,6 +6,11 @@
 
 
 
+    <!--
+ I used this Youtube video to reference Post creation
+ https://www.youtube.com/watch?v=GV1qbi59rgc&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=5&ab_channel=KODDev
+-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,12 +65,12 @@
                 android:src="@drawable/ic_comment"
                 android:layout_toEndOf="@+id/like"
                 android:layout_marginStart="10dp"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/save"
-                android:src="@drawable/ic_save"/>
+<!--            <ImageView-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:id="@+id/save"-->
+<!--                android:src="@drawable/ic_save"/>-->
 
         </RelativeLayout>
 
@@ -76,7 +81,8 @@
 
             android:textStyle="bold"
             android:id="@+id/likes"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:layout_marginStart="4dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +90,8 @@
 
             android:textStyle="bold"
             android:id="@+id/publisher"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:layout_marginStart="4dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:text="Location: "
                 android:textStyle="bold"
+                android:layout_marginStart="4dp"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -120,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:text="Date: "
                 android:textStyle="bold"
+                android:layout_marginStart="4dp"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -133,6 +142,7 @@
 
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:text="Time: "
                 android:textStyle="bold"
+                android:layout_marginStart="4dp"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -163,20 +174,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginStart="4dp"
             android:id="@+id/description"
             android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginStart="4dp"
             android:id="@+id/comments"
             android:textColor="@color/black"
-            android:layout_marginBottom="65dp"/>
+            android:layout_marginBottom="10dp"/>
 
 
 
     </LinearLayout>
+
 
 </RelativeLayout>

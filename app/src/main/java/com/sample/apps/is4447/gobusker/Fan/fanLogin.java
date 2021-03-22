@@ -82,15 +82,15 @@ public class fanLogin extends AppCompatActivity {
                         if (task.isSuccessful()){
                             FirebaseUser fan = FirebaseAuth.getInstance().getCurrentUser();
 
-                            if(fan.isEmailVerified()) {
+//                            if(fan.isEmailVerified()) {
                                 Intent i = new Intent(fanLogin.this, FanFeed.class);
                                 startActivity(i);
-                            }else{
-                                //Code acquired and modified from this youtube video for firebase email verification functionality
-                                //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
-                                fan.sendEmailVerification();
-                                Toast.makeText(fanLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
-                            }
+//                            }else{
+//                                //Code acquired and modified from this youtube video for firebase email verification functionality
+//                                //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
+//                                fan.sendEmailVerification();
+//                                Toast.makeText(fanLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
+//                            }
                         }else{
                             Toast.makeText(fanLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
                         }

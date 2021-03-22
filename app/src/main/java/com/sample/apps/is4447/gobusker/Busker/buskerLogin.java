@@ -81,13 +81,13 @@ public class buskerLogin extends AppCompatActivity {
                             FirebaseUser busker = FirebaseAuth.getInstance().getCurrentUser();
                             //Code acquired and modified from this youtube video for firebase email verification functionality
                             //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
-                            if (busker.isEmailVerified()) {
+//                            if (busker.isEmailVerified()) {
                                 Intent i = new Intent(buskerLogin.this, BuskerFeed.class);
                                 startActivity(i);
-                            } else {
-                                busker.sendEmailVerification();
-                                Toast.makeText(buskerLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
-                            }
+//                            } else {
+//                                busker.sendEmailVerification();
+//                                Toast.makeText(buskerLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
+//                            }
                         } else {
                             Toast.makeText(buskerLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
                         }

@@ -26,7 +26,8 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_conversion_absoluteWidth="411dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white">
+        android:background="@color/white"
+        >
 
       <!--  I referenced this Youtube video for the bottom navigation
         https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIGLDM&index=3&ab_channel=KODDev -->
@@ -42,6 +43,7 @@ android:background="@color/white"            app:menu="@menu/bottom_navigation"
             tools:layout_editor_absoluteY="675dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_conversion_absoluteWidth="411dp"
+
             />
 
 

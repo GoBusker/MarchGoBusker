@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,11 +49,13 @@ public class BuskerEditProfile extends AppCompatActivity {
     ImageView close;
      CircleImageView image_profile;
     TextView save, tv_change;
-    MaterialEditText firstname, username, bio;
+    MaterialEditText firstname, username, bio, facebook, instagram;
 
     private String image;
 
     FirebaseUser firebaseBusker;
+
+    CheckBox musicianbox, jazzbox, rockbox, professionalbox, dancerbox;
 
     private Uri mImageUri;
     private StorageTask uploadTask;
@@ -71,6 +74,16 @@ public class BuskerEditProfile extends AppCompatActivity {
         username = findViewById(R.id.username);
         bio = findViewById(R.id.bio);
 
+        facebook = findViewById(R.id.facebook);
+        instagram = findViewById(R.id.instagram);
+
+        musicianbox = findViewById(R.id.musiciancheck);
+        jazzbox = findViewById(R.id.jazzcheck);
+        rockbox = findViewById(R.id.rockcheck);
+        professionalbox = findViewById(R.id.professionalcheck);
+        dancerbox = findViewById(R.id.dancercheck);
+
+
         firebaseBusker = FirebaseAuth.getInstance().getCurrentUser();
         storageRef = FirebaseStorage.getInstance().getReference("uploads");
 
@@ -82,6 +95,24 @@ public class BuskerEditProfile extends AppCompatActivity {
                 firstname.setText(busker.getFirstname());
                 username.setText(busker.getUsername());
                 bio.setText(busker.getBio());
+                facebook.setText(busker.getFacebook());
+                instagram.setText(busker.getInstagram());
+                if (busker.isMusician() == true){
+                    musicianbox.setChecked(true);
+                }
+                if (busker.isDancer() == true){
+                    dancerbox.setChecked(true);
+                }
+                if (busker.isJazz() == true){
+                    jazzbox.setChecked(true);
+                }
+                if (busker.isProfessional() == true){
+                    professionalbox.setChecked(true);
+                }
+                if (busker.isRock() == true){
+                    rockbox.setChecked(true);
+                }
+
                 Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
 
                 Glide.clear(image_profile);
@@ -103,6 +134,7 @@ public class BuskerEditProfile extends AppCompatActivity {
             }
         });
 
+
         tv_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,19 +151,50 @@ public class BuskerEditProfile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Changes made!", Toast.LENGTH_SHORT).show();
                 updateProfile(firstname.getText().toString(),
                         username.getText().toString(),
-                        bio.getText().toString());
+                        bio.getText().toString(),
+                        facebook.getText().toString(),
+                        instagram.getText().toString());
 
             }
         });
     }
 
-    private void updateProfile(String firstname, String username, String bio) {
+    private void updateProfile(String firstname, String username, String bio, String facebook, String instagram) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Buskers").child(firebaseBusker.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("firstname", firstname);
         hashMap.put("username", username);
         hashMap.put("bio", bio);
+        hashMap.put("instagram", instagram);
+        hashMap.put("facebook", facebook);
+
+        if (musicianbox.isChecked()){
+            hashMap.put("musician", true);
+        } else if (musicianbox.isChecked() == false){
+            hashMap.put("musician", false);
+        }
+        if (jazzbox.isChecked()){
+            hashMap.put("jazz", true);
+        } else if (jazzbox.isChecked() == false){
+            hashMap.put("jazz", false);
+        }
+        if (dancerbox.isChecked()){
+            hashMap.put("dancer", true);
+        } else if (dancerbox.isChecked() == false){
+            hashMap.put("dancer", false);
+        }
+        if (rockbox.isChecked()){
+            hashMap.put("rock", true);
+        } else if (rockbox.isChecked() == false){
+            hashMap.put("rock", false);
+        }
+        if (professionalbox.isChecked()){
+            hashMap.put("professional", true);
+        } else if (professionalbox.isChecked() == false){
+            hashMap.put("professional", false);
+        }
+
 
 
         reference.updateChildren(hashMap);

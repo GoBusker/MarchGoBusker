@@ -79,11 +79,11 @@ EditText search_bar;
         return view;
     }
     private void searchBuskers(String s){
-        Query query = FirebaseDatabase.getInstance().getReference("Buskers").orderByChild("firstname")
+        Query query = FirebaseDatabase.getInstance().getReference("Buskers").orderByChild("username")
                 .startAt(s)
-                .endAt(s+"\uf0ff");
+                .endAt(s+"\uf8ff");
 
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mBuskers.clear();
@@ -96,7 +96,7 @@ EditText search_bar;
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+//                readBuskers();
             }
         });
     }

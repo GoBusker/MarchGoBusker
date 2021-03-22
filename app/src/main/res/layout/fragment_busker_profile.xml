@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/top_bar"
-                android:padding="20dp">
+                android:padding="15dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="80dp"
@@ -74,10 +74,10 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="95dp"
+                    android:orientation="vertical"
                     android:paddingLeft="20dp"
-                    android:paddingRight="4dp"
-                    android:orientation="vertical">
+                    android:paddingRight="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -90,45 +90,22 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/posts"
-                            android:textColor="@color/black"
-                            android:layout_gravity="center"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/posts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="busks"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
-                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                             android:layout_marginLeft="35dp"
-                            android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/followers"
-                            android:textColor="@color/black"
-                            android:layout_gravity="center"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="followers"
-                                android:textColor="@color/black"/>
-
-
-                    </LinearLayout>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -136,39 +113,64 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/followers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/following"
-                                android:textColor="@color/black"
                                 android:layout_gravity="center"
+                                android:textColor="@color/black"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="followers"
+                                android:textColor="@color/black" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/following"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="following"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black" />
 
 
                         </LinearLayout>
 
-            </LinearLayout>
+                    </LinearLayout>
 
                     <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
                         android:id="@+id/edit_profile"
-                        android:background="@drawable/background_border"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/background_border"
+                        android:textSize="18dp" />
 
-            </LinearLayout>
+                </LinearLayout>
         </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="13dp"
                 android:id="@+id/mid_bar"
                 android:orientation="vertical"
                 >
@@ -179,24 +181,153 @@
                     android:maxLines="1"
                     android:id="@+id/fullname"
                     android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook:"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                       android:textSize="17sp"
+                        />
+                    <TextView
+                        android:id="@+id/facebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:autoLink="web"
+                        android:textColorLink="@color/black"
+                        android:textColor="@color/black"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                   >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram:"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:textColorLink="@color/black"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/instagram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:autoLink="web"
+                        android:textColorLink="@color/black"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:id="@+id/bio"
                     android:maxLines="5"
+
                     android:textColor="@color/black"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+
                     />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+               >
+                    <TextView
+                        android:id="@+id/musician"
+                        android:layout_width="73dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/musician"
+                        android:text="Musician"
+                        android:textStyle="bold"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="2dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"
+
+                        />
+                    <TextView
+                        android:id="@+id/rock"
+                        android:layout_width="45dp"
+                        android:layout_height="22dp"
+                        android:background="@drawable/rock"
+                        android:text="Rock"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:paddingLeft="5dp"
+                        android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+
+                        />
+                    <TextView
+                        android:id="@+id/jazz"
+                        android:layout_width="43dp"
+                        android:layout_height="22dp"
+                        android:background="@drawable/jazz"
+                        android:text="Jazz"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:paddingLeft="5dp"
+                        android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+
+                        />
+                    <TextView
+                        android:id="@+id/dancer"
+                        android:layout_width="57dp"
+                        android:layout_height="22dp"
+                        android:background="@drawable/dancer"
+                        android:text="Dancer"
+                        android:textStyle="bold"
+                        android:paddingLeft="5dp"
+                        android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+
+                        />
+                    <TextView
+                        android:id="@+id/professional"
+                        android:layout_width="100dp"
+                        android:layout_height="22dp"
+                        android:background="@drawable/professional"
+                        android:text="Professional"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:paddingLeft="5dp"
+                        android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+
+                        />
+                </LinearLayout>
+
+
+
+
+
+
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:id="@+id/last_bar"
@@ -206,21 +337,21 @@
 
                 <ImageButton
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:id="@+id/my_photos"
                     android:src="@drawable/ic_apps"
-                    android:background="#AEAEAE"
+                    android:background="@drawable/saved"
 
                     />
 
                 <ImageButton
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:id="@+id/saved_photos"
                     android:src="@drawable/ic_save"
-                    android:background="#AEAEAE"
+                    android:background="@drawable/saved"
 
                     />
 
@@ -237,10 +368,10 @@
             >
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:id="@+id/add_payment"
                 android:src="@drawable/ic_money"
-                android:background="@color/bg_screen4"
+                android:background="@drawable/background_border"
 
                 />
         </LinearLayout>
