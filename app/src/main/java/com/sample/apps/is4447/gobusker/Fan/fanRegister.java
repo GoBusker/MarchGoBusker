@@ -102,6 +102,7 @@ public class fanRegister extends AppCompatActivity {
                             reference = FirebaseDatabase.getInstance().getReference().child("Fans").child(userId);
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("id", userId);
+                            hashMap.put("usertype", "fan");
                             hashMap.put("username", username.toLowerCase());
                             hashMap.put("firstname", firstname);
                             hashMap.put("email", email);

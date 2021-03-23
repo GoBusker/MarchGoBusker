@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -17,13 +18,26 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.sample.apps.is4447.gobusker.Fan.FanFeed;
+import com.sample.apps.is4447.gobusker.Fan.fanLogin;
+import com.sample.apps.is4447.gobusker.Model.Busker;
 import com.sample.apps.is4447.gobusker.R;
+
+import java.util.List;
 
 public class buskerLogin extends AppCompatActivity {
     //declaring variables
     Button login;
     EditText email, password;
     TextView forgotPassword, register;
+
+    private List<Busker> mBuskers;
 
     //connection to firebase
     private FirebaseAuth mAuth;
@@ -73,41 +87,55 @@ public class buskerLogin extends AppCompatActivity {
                     password.requestFocus();
                 } else try{
                 mAuth.signInWithEmailAndPassword(emaillog, passwordlog).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
                     //Code acquired and modified from this youtube video for firebase login functionality
                     //"https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser busker = FirebaseAuth.getInstance().getCurrentUser();
-                            //Code acquired and modified from this youtube video for firebase email verification functionality
-                            //"https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
+                        if (task.isSuccessful()){
+
+                    //Code acquired and modified from this youtube video for firebase login functionality
+                    //"https://www.youtube.com/watch?v=KB2BIm_m1Os&t=1s&ab_channel=John%27sAndroidStudioTutorialsJohn%27sAndroidStudioTutorials"
+
+
+                                            Intent i = new Intent(buskerLogin.this, BuskerFeed.class);
+                                            startActivity(i);
+
+
+
+
+
+
+
+//                                    Code acquired and modified from this youtube video for firebase email verification functionality
+//                                    "https://www.youtube.com/watch?v=15WRCpH-VG0&ab_channel=CodeWithMaznCodeWithMazn"
 //                            if (busker.isEmailVerified()) {
-                                Intent i = new Intent(buskerLogin.this, BuskerFeed.class);
-                                startActivity(i);
+//
 //                            } else {
 //                                busker.sendEmailVerification();
 //                                Toast.makeText(buskerLogin.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
 //                            }
-                        } else {
-                            Toast.makeText(buskerLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
-                        }
+//                                }
+
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError error) {
+//                                }
+//                            });
+                }else{
+                        Toast.makeText(buskerLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
                     }
-                });
-            }catch(Exception e){
-                Toast.makeText(buskerLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
-            }
-
-            }
-        });
-
+                }
+            });
+        }catch(Exception e){
+            Toast.makeText(buskerLogin.this, "Incorrect name or password, Please try again.", Toast.LENGTH_SHORT).show();
+        }
+    }
+});
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(buskerLogin.this, buskerForgot.class);
-                startActivity(i);
-            }
+@Override
+public void onClick(View v) {
+        Intent i = new Intent(buskerLogin.this, buskerForgot.class);
+        startActivity(i);
+        }
         });
-
-    }
-}
+        }
+        }

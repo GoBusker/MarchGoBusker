@@ -226,6 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:autoLink="web"
+                        android:text="No account connected"
                         android:textColorLink="@color/black"
                         android:textColor="@color/black"
                         />
@@ -251,6 +252,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:autoLink="web"
+                        android:text="No account connected"
                         android:textColorLink="@color/black"
                         android:textColor="@color/black"/>
 

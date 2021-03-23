@@ -16,7 +16,7 @@ https://www.youtube.com/watch?v=Kovj7Xyy6_g&list=PLzLFqCABnRQduspfbu2empaaY9BoIG
         android:title=""/>
     <item
         android:id="@+id/nav_favourite"
-        android:icon="@drawable/ic_favourite"
+        android:icon="@drawable/ic_music_note"
         android:title=""/>
     <item
         android:id="@+id/nav_profile"

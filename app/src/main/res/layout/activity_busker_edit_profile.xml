@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Edit Profile"
+                    android:text="Edit Busker Profile"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:textStyle="bold"
@@ -95,12 +95,12 @@
             android:id="@+id/firstname"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:hint="Full Name"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:background="@drawable/edit_text"
-            app:met_floatingLabel="normal" />
+            app:met_floatingLabel="normal"
+            android:maxLines="1"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/username"
@@ -108,7 +108,9 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             android:textColor="@color/black"
-            app:met_floatingLabel="normal" />
+            android:layout_marginTop="2dp"
+            app:met_floatingLabel="normal"
+            android:maxLines="1"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/bio"
@@ -117,62 +119,91 @@
             android:hint="Tell your fans a little about yourself!"
             android:textColor="@color/black"
             app:met_floatingLabel="normal"
-            android:maxLines="5"/>
+            android:layout_marginTop="2dp"
+            android:maxLines="2"/>
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/facebook"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="Enter Facebook Link"
             android:textColor="@color/black"
-            app:met_floatingLabel="normal" />
+            app:met_floatingLabel="normal"
+            android:layout_marginTop="2dp"
+            android:maxLines="1"/>/>
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/instagram"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="Enter Instagram Link"
             android:textColor="@color/black"
-            app:met_floatingLabel="normal" />
+            app:met_floatingLabel="normal"
+            android:maxLines="1"
+            android:layout_marginTop="2dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_text"
-
             >
 
         <CheckBox
             android:id="@+id/musiciancheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:textColor="@color/black"
+            android:buttonTint="@color/bg_screen4"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="20dp"
             android:text="Music"/>
             <CheckBox
                 android:id="@+id/rockcheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/Theme.AppCompat.DayNight"
-                android:text="Rock"/>
+                android:text="Rock"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:buttonTint="@color/bg_screen4"/>
             <CheckBox
                 android:id="@+id/jazzcheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/Theme.AppCompat.DayNight"
-                android:text="Jazz"/>
-            <CheckBox
-                android:id="@+id/professionalcheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/Theme.AppCompat.DayNight"
-                android:text="Professional"/>
-            <CheckBox
-                android:id="@+id/dancercheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/Theme.AppCompat.DayNight"
-                android:text="Dancer"/>
+                android:textColor="@color/black"
+                android:layout_marginTop="2dp"
+                android:buttonTint="@color/bg_screen4"
+                android:text="Jazz"
+                android:layout_marginLeft="20dp"/>
+
 
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <CheckBox
+                android:id="@+id/professionalcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Professional"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:buttonTint="@color/bg_screen4"/>
+            <CheckBox
+                android:id="@+id/dancercheck"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dancer"
+                android:layout_marginLeft="20dp"
+                android:buttonTint="@color/bg_screen4"
+                android:textColor="@color/black"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

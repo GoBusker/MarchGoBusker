@@ -105,6 +105,8 @@ private void register(String username, String firstname, String email, String pa
                         reference = FirebaseDatabase.getInstance().getReference().child("Buskers").child(userId);
                         HashMap<String, Object>hashMap = new HashMap<>();
                         hashMap.put("id", userId);
+                        hashMap.put("usertype", "busker");
+                        hashMap.put("busker", false);
                         hashMap.put("username", username.toLowerCase());
                         hashMap.put("firstname", firstname);
                         hashMap.put("bio", "");

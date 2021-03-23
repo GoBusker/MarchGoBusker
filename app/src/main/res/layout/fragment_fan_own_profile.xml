@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="130dp"
 
         android:text="0"
         android:textColor="#000000"
@@ -64,24 +64,23 @@
     <FrameLayout
         android:id="@+id/frameLayout2"
         android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="92dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/profile_design"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout5">
 
         <TextView
             android:id="@+id/fan_usernam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Fan profile own"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="35dp"
+            android:text="Username"
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="44dp"
+            android:textSize="20sp"
             android:textStyle="bold"
 
             />
@@ -91,8 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="16dp"
 
             android:text="Username:"
             android:textColor="#000000"
@@ -100,26 +99,27 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/frameLayout2"
+        android:id="@+id/frameLayout5"
         android:layout_width="350dp"
-        android:layout_height="100dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/profile_design"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.381">
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="35dp"
             android:text="name"
             android:textColor="#000000"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 
@@ -129,23 +129,23 @@
             android:layout_height="wrap_content"
 
 
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="16dp"
             android:text="Name:"
             android:textColor="#000000"
             android:textSize="18sp" />
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout3"
         android:layout_width="350dp"
-        android:layout_height="100dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/profile_design"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:outlineSpotShadowColor="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
-        app:layout_constraintVertical_bias="0.218">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
 
         <TextView
@@ -153,10 +153,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="16dp"
             android:text="Email:"
-
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="20dp"
 
             android:textColor="#000000"
             android:textSize="18sp" />
@@ -165,12 +164,11 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="35dp"
             android:text="email"
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="44dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </FrameLayout>
 
@@ -178,11 +176,13 @@
         android:id="@+id/btnfanLogout"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:background="@drawable/background_border"
         android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:background="@drawable/background_border"/>
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+        app:layout_constraintVertical_bias="0.418" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

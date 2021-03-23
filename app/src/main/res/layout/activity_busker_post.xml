@@ -43,7 +43,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/black"
                 />
 
         </RelativeLayout>
@@ -130,17 +130,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:theme="@style/Theme.AppCompat.DayNight"
-                    android:visibility="visible"/>
+                    android:visibility="visible"
+                    />
 
 <TimePicker
     android:id="@+id/timepicker"
     android:layout_marginTop="5dp"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/Theme.AppCompat.DayNight"
-    android:visibility="invisible"
-    />
+    android:theme="@style/Theme.AppCompat.NoActionBar"
+    android:visibility="gone"
+    android:timePickerMode="spinner"
+    android:background="@color/bg_screen4"
 
+    />
+<!--                android:outlineAmbientShadowColor="@color/black"-->
+<!--                android:numbersBackgroundColor="@color/bg_screen4"-->
+<!--                android:numbersTextColor="@color/bg_screen4"-->
+<!--                android:numbersSelectorColor="@color/black"-->
+<!--                android:numbersInnerTextColor="@color/black"-->
+<!--                android:outlineSpotShadowColor="@color/black"-->
 
 
 

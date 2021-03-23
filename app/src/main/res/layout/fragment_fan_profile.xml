@@ -219,15 +219,16 @@
                         android:textColor="@color/black"
                         android:textSize="17sp"
                         />
+
                     <TextView
                         android:id="@+id/facebook"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="23dp"
                         android:layout_marginLeft="5dp"
                         android:autoLink="web"
-                        android:textColorLink="@color/black"
+                        android:text="No account connected"
                         android:textColor="@color/black"
-                        />
+                        android:textColorLink="@color/black" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -246,6 +247,7 @@
                         />
                     <TextView
                         android:id="@+id/instagram"
+                        android:text="No account connected"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
