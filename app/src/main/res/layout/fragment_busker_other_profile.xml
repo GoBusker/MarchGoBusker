@@ -81,7 +81,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/top_bar"
-                android:padding="15dp">
+                android:paddingTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -191,13 +193,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:id="@+id/fullname"
+                    android:text="HEHEHEHEH"
                     android:textStyle="bold"
                     android:textSize="24dp"
                     android:textColor="@color/black"

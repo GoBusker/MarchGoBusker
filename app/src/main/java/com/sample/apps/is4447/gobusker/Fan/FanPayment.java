@@ -40,7 +40,7 @@ public class FanPayment extends AppCompatActivity  implements AdapterView.OnItem
     FirebaseUser firebaseBusker;
     String profileid;
 
-    TextView send_payment, send_payment2, send_payment5, send_payment20;
+    TextView send_payment, send_payment2, send_payment5, send_payment20, buskerdonationname;
 
     BottomNavigationView bottomNavigationView;
     Fragment selectedFragment = null;
@@ -60,11 +60,27 @@ public class FanPayment extends AppCompatActivity  implements AdapterView.OnItem
         send_payment = findViewById(R.id.send_payments);
         send_payment.setMovementMethod(LinkMovementMethod.getInstance());
 
+        buskerdonationname = findViewById(R.id.buskerdonationname);
+
         radioGroup = findViewById(R.id.radio);
 
 
         SharedPreferences prefs = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Buskers").child(profileid);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Busker busker = snapshot.getValue(Busker.class);
+               buskerdonationname.setText(busker.getUsername());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //buskerInfo();
         //tenInfo();

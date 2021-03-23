@@ -69,6 +69,8 @@ public class FanPostAdapter extends RecyclerView.Adapter<FanPostAdapter.ViewHold
 
         Glide.with(mContext).load(post.getPostimage()).into(viewHolder.post_image);
 
+        viewHolder.save.setVisibility(View.GONE);
+
         if (post.getDescription().equals("")){
             viewHolder.description.setVisibility(View.GONE);
         } else {

@@ -26,14 +26,36 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/ivCrotchet13"
+        android:layout_width="149dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="ImageHeader"
+        android:src="@drawable/gobuskerimage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-5dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="189dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/revolutlogo"
-        app:layout_constraintBottom_toTopOf="@+id/fan_payment_spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.653"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHeading13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="28dp"
+        android:text="GoBusker"
+        android:textColor="@color/black"
+        android:textSize="55sp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,48 +63,52 @@
         android:id="@+id/radio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="26dp"
         android:orientation="vertical"
-        android:theme="@style/Theme.AppCompat.DayNight"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <RadioButton
             android:id="@+id/two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:padding="5dp"
+            android:text="2 Euro Donation Link"
             android:textColor="@color/black"
-            android:textSize="20dp"
-       />
+            android:textSize="16dp" />
 
         <RadioButton
             android:id="@+id/five"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="5"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
 
-        <RadioButton
-            android:id="@+id/twenty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="20"
+            android:padding="5dp"
+            android:text="5 Euro Donation Link"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16dp" />
+
 
         <RadioButton
             android:id="@+id/ten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="10"
+            android:padding="5dp"
+
+            android:text="10 Euro Donation Link"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/twenty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="20 Euro Donation Link"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
     </RadioGroup>
 
     <com.rengwuxian.materialedittext.MaterialEditText
@@ -91,7 +117,7 @@
         android:layout_height="wrap_content"
 
 
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="29dp"
         android:hint="Enter Revolut Doantion Link"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/btnPayment"
@@ -104,10 +130,25 @@
         android:id="@+id/btnPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/background_border"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/edit_text"
+        android:text="Create a Revolut request link of an amount 2, 5, 10 or 20, select the appropriate donation option, insert your request link into the textfield and click save"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

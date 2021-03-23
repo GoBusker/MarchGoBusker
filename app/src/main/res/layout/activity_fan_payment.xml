@@ -7,6 +7,28 @@
     tools:context=".Fan.FanPayment"
     android:background="@color/white">
 
+    <TextView
+        android:id="@+id/tvHeading12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="GoBusker"
+        android:textColor="@color/black"
+        android:textSize="55sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toEndOf="@+id/ivCrotchet12"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivCrotchet12"
+        android:layout_width="149dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="ImageHeader"
+        android:src="@drawable/gobuskerimage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-5dp" />
+
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,11 +52,12 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
+
     <TextView
         android:id="@+id/send_payments"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="68dp"
         android:autoLink="web"
         android:text="Donation link"
         android:textColor="#007521"
@@ -43,78 +66,110 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.387"
+        app:layout_constraintHorizontal_bias="0.306"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginBottom="45dp"
         android:orientation="vertical"
-        android:theme="@style/Theme.AppCompat.DayNight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        app:layout_constraintBottom_toTopOf="@+id/send_payments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:padding="5dp"
+            android:text="2 Euro Donation Link"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16dp" />
 
         <RadioButton
             android:id="@+id/five"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="5"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
 
-        <RadioButton
-            android:id="@+id/twenty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="20"
+            android:padding="5dp"
+            android:text="5 Euro Donation Link"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16dp" />
+
 
         <RadioButton
             android:id="@+id/ten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="10"
+            android:padding="5dp"
+
+            android:text="10 Euro Donation Link"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/twenty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="20 Euro Donation Link"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
     </RadioGroup>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="189dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/revolutlogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/buskerdonationname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="Select Donation Amount"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="160dp"
+        android:text="Username"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/fan_payment_spinner"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/edit_text"
+        android:text="Buskers upload Revolut payment links, select a donation option: 2, 5, 10 or 20, follow the link and confirm the payment through the Revolut app or website"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="160dp"
+        android:text="Payee:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

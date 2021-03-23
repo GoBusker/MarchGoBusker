@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +73,7 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
 
 
 
+
         isFollowing(busker.getId(), viewHolder.btn_follow);
 
 
@@ -79,8 +81,10 @@ public class BuskerAdapter extends RecyclerView.Adapter<BuskerAdapter.ViewHolder
 
         if(busker.getId().equals(firebaseBusker.getUid())){
             viewHolder.btn_follow.setVisibility(View.GONE);
-//            viewHolder.username.setVisibility(View.GONE);
+//            viewHolder.image_profile.setVisibility(View.GONE);
 //            viewHolder.fullname.setVisibility(View.GONE);
+//            viewHolder.username.setVisibility(View.GONE);
+
         }
 
 

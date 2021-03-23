@@ -74,7 +74,8 @@ public class FanSearchFragment extends Fragment {
     private void searchBuskers(String s){
         Query query = FirebaseDatabase.getInstance().getReference("Buskers").orderByChild("username")
                 .startAt(s)
-                .endAt(s+"\uf0ff");
+                .endAt(s+"\uf8ff");
+
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

@@ -108,7 +108,7 @@ private void register(String username, String firstname, String email, String pa
                         hashMap.put("username", username.toLowerCase());
                         hashMap.put("firstname", firstname);
                         hashMap.put("bio", "");
-                        hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/gobusker-e1749.appspot.com/o/uploads%2FIMG_20180107_173528_102.jpg?alt=media&token=d8535528-59b2-455b-acc7-a964f41b8d73");
+                        hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/gobusker-e1749.appspot.com/o/uploads%2Fblank-profile-picture-png.png?alt=media&token=4f77462e-1e91-479d-9080-2e19f73faa1c");
                         hashMap.put("payment10", "");
                         hashMap.put("payment2", "");
                         hashMap.put("payment5", "");
